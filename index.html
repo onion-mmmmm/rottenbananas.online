@@ -3,56 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Review Website</title>
+    <title>Rotten Bananas - Movie Reviews</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Rotten Bananas
-        </h1>
+        <h1>Rotten Bananas</h1>
         <nav>
             <ul>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#reviews">Home</a></li>
+                <li><a href="#about">About Us</a></li>
             </ul>
         </nav>
     </header>
-    
-    <main>
-        <section id="reviews">
-            <h2>Latest Reviews</h2>
-            <article>
-                <h3>Movie Title 1</h3>
-                <p><strong>Rating:</strong> ★★★★☆</p>
-                <p>This is a great movie about...</p>
-                <p><a href="#">Read more</a></p>
-            </article>
-            <article>
-                <h3>Movie Title 2</h3>
-                <p><strong>Rating:</strong> ★★★☆☆</p>
-                <p>An interesting film that explores...</p>
-                <p><a href="#">Read more</a></p>
-            </article>
-        </section>
 
-        <section id="about">
+    <!-- Genre Banner -->
+    <div class="genre-banner">
+        <ul>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Comedy</a></li>
+            <li><a href="#">Drama</a></li>
+            <li><a href="#">Horror</a></li>
+            <li><a href="#">Sci-Fi</a></li>
+            <li><a href="#">Thriller</a></li>
+            <li><a href="#">Adventure</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <section id="reviews">
+                <h2>Latest Reviews</h2>
+                <div class="movie-grid">
+                    <article>
+                        <div class="movie-poster" style="background-image: url('picture/movie1.webp');"></div>
+                        <div class="movie-info">
+                            <h3>007: ThunderBall (1965)</h3>
+                            <p><strong>Rating:</strong> ★★★★★</p>
+                            <p>"Thunderball" is the fourth entry in the iconic James Bond franchise, continuing the suave and thrilling escapades of 007, played by Sean Connery.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="movie-poster" style="background-image: url('picture/Movie2.jpg');"></div>
+                        <div class="movie-info">
+                            <h3>Die Hard (1988)</h3>
+                            <p><strong>Rating:</strong> ★★★★★</p>
+                            <p>A quintessential action film, "Die Hard" set the gold standard for both the genre and Christmas movies. Bruce Willis’ portrayal of wisecracking NYPD officer John McClane is iconic. </p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Section -->
+        <section id="about" class="about-section">
             <h2>About Us</h2>
-            <p>Welcome to Rotten Bananas, where we try our best to pump out the best of the best reviews of the latest movies!</p>
+            <p>Welcome to Rotten Bananas! Your trusted source for honest and insightful movie reviews.</p>
         </section>
-
-        <section id="contact infomations">
-            <h2>Contact infomations</h2>
-            <form>
-                <label for="Direct phone number"><p>Direct phone number: 0915733659</p>
-                
-                <label for="email"><p>Email: rottenbananas@gmail.com</p>
-
-                <label for="message"><p>Hotline: 1900 6666</p>
-
-            </form>
-        </section>
-    </main>
+    </div>
 
     <footer>
         <p>&copy; 2024 Rotten Bananas</p>
