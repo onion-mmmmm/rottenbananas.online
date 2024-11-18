@@ -3,13 +3,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.55s ease;
 }
+
 
 body {
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Header */
@@ -18,29 +21,50 @@ header {
     color: white;
     padding: 1rem 0;
     text-align: center;
+    display: flex;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+header img {
+    width: 100px;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-self: center;
     gap: 1.5rem;
 }
+
 
 header nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 header nav ul li a:hover {
     text-decoration: underline;
+}
+
+form input {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+form button {
+    border: none;
+    background: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }
 
 /* Genre Banner */
@@ -137,23 +161,9 @@ article:hover {
     margin-bottom: 0.5rem;
 }
 
-/* About Section */
-.about-section {
-    background: white;
-    padding: 1.5rem;
-    margin-top: 1rem;
-    text-align: center;
-    border-top: 2px solid #ffc619;
-}
-
-.about-section h2 {
+footer h2 {
     font-size: 1.8rem;
     color: #ffc619;
-}
-
-.about-section p {
-    font-size: 1rem;
-    color: #555;
 }
 
 /* Footer */
@@ -164,3 +174,4 @@ footer {
     padding: 1rem;
     margin-top: 2rem;
 }
+
