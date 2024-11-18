@@ -24,7 +24,7 @@ header {
     display: flex;
 }
 
-header img {
+.img logo img{
     width: 100px;
 }
 
