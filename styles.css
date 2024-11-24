@@ -1,4 +1,4 @@
-/* General reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +7,9 @@
     transition: all 0.55s ease;
 }
 
+a {
+    text-decoration: none;
+}
 
 body {
     background-color: #f9f9f9;
@@ -18,61 +21,84 @@ body {
 /* Header */
 header {
     background-color: #ffc619;
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
+    padding: 10px 120px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
-.img logo img{
+.logo img {
     width: 100px;
 }
 
-header nav ul {
-    list-style: none;
+.navbar-form {
+    width: 300px;
     display: flex;
-    justify-content: center;
-    align-self: center;
-    gap: 1.5rem;
+    background: hsl(219, 30%, 45%);
+    border-radius: 15px;
+    height: 50px;
 }
 
-
-header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
+.navbar-form input {
+    width: 90%;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 15px 0 0 15px;
 }
 
-header nav ul li a:hover {
-    text-decoration: underline;
+.navbar-form input::placeholder {
+    color: rgba(0, 0, 0, 0.599);
+    font-weight: 800;
+    font-size: 15px;
 }
 
-form input {
-    padding: 0;
+.navbar-form button {
     border: none;
     background: none;
-}
-
-form button {
-    border: none;
-    background: none;
+    cursor: pointer;
+    padding: 0 5px;
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    color: rgb(255, 255, 255);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    transition: color 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: rgb(255, 231, 189);
+}
+
+.signup {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.signup span {
+    color: rgba(0, 0, 0, 0.755);
+}
+
+.signup:hover span, .signup:hover button span {
+    color: white;
+}
+
+.signup button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 3px;
+    height: 45px;
+    padding: 0 5px;
 }
 
 /* Genre Banner */
 .genre-banner {
-    background: #182833;
+    background: hsl(218, 31%, 25%);
     padding: 1rem 0.5rem;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .genre-banner ul {
@@ -83,14 +109,9 @@ form button {
     padding: 0;
 }
 
-.genre-banner ul li {
-    margin: 0;
-}
-
 .genre-banner ul li a {
-    text-decoration: none;
     color: #333;
-    font-weight: bold;
+    font-weight: 800;
     padding: 0.5rem 1rem;
     background: white;
     border-radius: 5px;
@@ -98,28 +119,39 @@ form button {
 }
 
 .genre-banner ul li a:hover {
-    color: white;
-    background: #ffc500;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 215, 146);
     transform: scale(1.1);
+}
+
+/* Title */
+.Title h1 {
+    color: #000000;
+    font-size: 45px;
+    font-weight: 800;
+    text-align: center;
+    margin: 2rem 0;
 }
 
 /* Layout */
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 /* Movie Grid */
 .movie-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 article {
     display: flex;
-    border: 1px solid #ddd;
+    flex-direction: column;
+    cursor: pointer;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -133,26 +165,15 @@ article:hover {
 
 /* Movie Poster Styling */
 .movie-poster {
-    flex: 1;
     background-size: cover;
-    background-position: center right;
-    position: relative;
-}
-
-.movie-poster::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, black, transparent);
+    background-position: center;
+    height: 240px;
 }
 
 /* Movie Info */
 .movie-info {
-    flex: 2;
     padding: 1rem;
+    text-align: left;
 }
 
 .movie-info h3 {
@@ -161,17 +182,51 @@ article:hover {
     margin-bottom: 0.5rem;
 }
 
-footer h2 {
-    font-size: 1.8rem;
-    color: #ffc619;
+.movie-info p {
+    margin-bottom: 0.5rem;
+}
+
+/* Movie Page Specific Styles */
+.movie-review {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-trailer iframe {
+    flex: 1 1 100%;
+    border-radius: 8px;
+    max-height: 360px;
+}
+
+.movie-info {
+    flex: 1 1 400px;
+}
+
+.movie-info h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #000;
 }
 
 /* Footer */
 footer {
-    background-color: #222;
+    background: hsl(218, 31%, 25%);
     color: white;
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
 }
 
+footer h2 {
+    font-size: 1.8rem;
+    color: #ffc619;
+}
+
+footer p {
+    margin-top: 0.5rem;
+}
