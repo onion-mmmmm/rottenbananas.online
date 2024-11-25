@@ -32,6 +32,10 @@ header {
     width: 100px;
 }
 
+nav {
+    margin: 0 100px 0 0;
+}
+
 .navbar-form {
     width: 300px;
     display: flex;
