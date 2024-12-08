@@ -32,6 +32,10 @@ header {
     width: 100px;
 }
 
+nav {
+    margin: 0 300px 0 0;
+}
+
 .navbar-form {
     width: 300px;
     display: flex;
@@ -122,15 +126,6 @@ header {
     color: rgb(0, 0, 0);
     background: rgb(255, 215, 146);
     transform: scale(1.1);
-}
-
-/* Title */
-.Title h1 {
-    color: #000000;
-    font-size: 45px;
-    font-weight: 800;
-    text-align: center;
-    margin: 2rem 0;
 }
 
 /* Layout */

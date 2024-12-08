@@ -163,6 +163,7 @@ article {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 1rem;
     align-items: center;
+    cursor: pointer;
 }
 
 article:hover {
@@ -190,7 +191,7 @@ article:hover {
 }
 
 .movie-info h3 {
-    font-size: 1.6rem;
+    font-size: 30px;
     color: #ffc619;
     margin-bottom: 0.5rem;
 }
@@ -198,7 +199,7 @@ article:hover {
 .movie-info p {
     margin-bottom: 0.5rem;
     color: #555;
-    font-size: 0.9rem;
+    font-size: 20px;
     line-height: 1.4;
 }
 
