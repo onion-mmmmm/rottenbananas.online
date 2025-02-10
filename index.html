@@ -1,109 +1,257 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotten Bananas-Movie Reviews</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotten Bananas - Movie Reviews</title>
+  <!-- FontAwesome for icons -->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">
-            <img src="picture/movie review logo.png" alt="logo">
-        </a>
-        <nav>
-            <h2>Rotten Bananas</h2>
-        </nav>
-        <form action="" class="navbar-form">
-            <input type="text" name="search" id="" placeholder="Search" class="navbar-searchbar">
-            <button>
-                <span class="material-symbols-outlined">
-                    search
-                </span>
-            </button>
-        </form>
-            <a href="https://onion-mmmmm.github.io/RottenBananas.online-login/" class="signup">
-                <span>Sign in</span>
-                <button>
-                    <span class="material-symbols-outlined">
-                        login
-                    </span>
-                </button>
-            </a>
-    </header>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <img src="movie review logo.png" alt="Logo" />
+      Rotten Bananas
+    </div>
+    <ul>
+      <li><a href="#action">Action</a></li>
+      <li><a href="#comedy">Comedy</a></li>
+      <li><a href="#drama">Drama</a></li>
+      <li><a href="#scifi">Sci-Fi</a></li>
+      <li><a href="#horror">Horror</a></li>
+      <li><a href="#fantasy">Fantasy</a></li>
+      <li class="user-menu">
+        <span class="user-btn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown">
+          <a href="#login">Log In</a>
+          <a href="#signup">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Genre Banner -->
-    <div class="genre-banner">
-        <ul>
-                <li><a href="index.html">Action</a></li> <!-- Updated to point to horror.html -->
-                <li><a href="comedy.html">Comedy</a></li>
-                <li><a href="drama.html">Drama</a></li>
-                <li><a href="horror.html">Horror</a></li> <!-- Updated to point to horror.html -->
-                <li><a href="sci-fi.html">Sci-Fi</a></li>
-                <li><a href="fantasy.html">Fantasy</a></li>
-        </ul>
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-content animate-on-scroll">
+      <h1>Movie Reviews Reimagined</h1>
+      <p>Discover the best films and honest reviews. Immerse yourself in the world of movies with our curated collections.</p>
+      <button class="cta-btn" onclick="document.querySelector('#action').scrollIntoView()">Explore Now</button>
     </div>
-    <div class="Title"><h1>Action</h1></div>
-    <div class="container">
-        <!-- Main Content -->
-        <main class="main-content">
-            <section id="reviews">
-                <div class="movie-grid">
-                    <article onclick="location.href='bourne_identity.html';">
-                        <div class="movie-poster" style="background-image: url('picture/the bourne identity.jpg');"></div>
-                        <div class="movie-info">
-                            <h3>The Bourne Identity</h3>
-                            <p><strong>Rating:</strong> ★★★★☆</p>
-                            <p>An intriguing action film with a grittier, more realistic style. Matt Damon shines as Jason Bourne, an amnesiac uncovering his past while evading assassins. Its grounded action, intense car chases, and smart storytelling make it a standout spy thriller.</p>
-                        </div>
-                    </article>
-                    <article onclick="location.href='die_hard.html';">
-                        <div class="movie-poster" style="background-image: url('picture/sống dai.jpg');"></div>
-                        <div class="movie-info">
-                            <h3>Die Hard (1988)</h3>
-                            <p><strong>Rating:</strong> ★★★★★</p>
-                            <p>A quintessential action film, "Die Hard" set the gold standard for both the genre and Christmas movies. Bruce Willis’ portrayal of wisecracking NYPD officer John McClane is iconic. </p>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="movie-poster" style="background-image: url('picture/007.jpg');"></div>
-                        <div class="movie-info">
-                            <h3>007: ThunderBall (1965)</h3>
-                            <p><strong>Rating:</strong> ★★★★★</p>
-                            <p>"Thunderball," the fourth James Bond film starring Sean Connery, follows 007 recovering stolen nuclear warheads from SPECTRE in the Caribbean. It’s known for groundbreaking underwater sequences and classic Bond action, though the pacing feels uneven at time. </p>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="movie-poster" style="background-image: url('picture/John Wick.jpg');"></div>
-                        <div class="movie-info">
-                            <h3>John Wick (2014)</h3>
-                            <p><strong>Rating:</strong> ★★★★★</p>
-                            <p>It is an action film with sleek choreography, neo-noir style, and Keanu Reeves’ iconic turn as a vengeful hitman. Known for its precise fight scenes and rich world-building, the film blends brutal action with a stylish atmosphere. Reeves’ stoic, physical performance cements it as an instant classic. </p>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="movie-poster" style="background-image: url('picture/cung đường điên loạn đầy bực ác.jpg');"></div>
-                        <div class="movie-info">
-                            <h3>Mad Max: Fury Road (2015)</h3>
-                            <p><strong>Rating:</strong> ★★★★★</p>
-                            <p> It is a high-octane masterpiece that redefines action cinema. Charlize Theron’s commanding Furiosa and Tom Hardy’s stoic Max drive a visually stunning tale of survival and rebellion in a dystopian wasteland. With breathtaking stunts, practical effects, and minimal yet impactful storytelling, it’s an explosive triumph of the genre. </p>
-                        </div>
-                    </article>
-                </div>
-            </section>
-        </main>
-    </div>
-    <script src="script.js"></script>
+  </header>
+
+  <!-- Neuromorphic Category Buttons -->
+  <div class="categories-container">
+    <div class="btn"><a href="#action">Action</a></div>
+    <div class="btn"><a href="#comedy">Comedy</a></div>
+    <div class="btn"><a href="#drama">Drama</a></div>
+    <div class="btn"><a href="#scifi">Sci-Fi</a></div>
+    <div class="btn"><a href="#horror">Horror</a></div>
+    <div class="btn"><a href="#fantasy">Fantasy</a></div>
+  </div>
+
+  <!-- Movie Categories -->
+  <main>
+    <!-- Action Movies Section -->
+    <section id="action">
+      <h2 class="animate-on-scroll">Action Movies</h2>
+      <div class="movie-grid">
+        <a href="movie_detail.html" class="card-link">
+          <div class="card animate-on-scroll">
+            <img src="the bourne identity.jpg" alt="Action Movie 1">
+            <div class="card-content">
+              <h3>Explosive Pursuit</h3>
+              <p>An adrenaline-pumping thrill ride that never lets up.</p>
+              <span class="rating">8.2/10</span>
+            </div>
+          </div>
+        </a>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Action+Movie+2" alt="Action Movie 2">
+          <div class="card-content">
+            <h3>Battlefield Fury</h3>
+            <p>A high stakes showdown with breathtaking visuals.</p>
+            <span class="rating">7.9/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Action+Movie+3" alt="Action Movie 3">
+          <div class="card-content">
+            <h3>Rapid Revenge</h3>
+            <p>An explosive journey of betrayal and redemption.</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comedy Movies Section -->
+    <section id="comedy">
+      <h2 class="animate-on-scroll">Comedy Movies</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Comedy+Movie+1" alt="Comedy Movie 1">
+          <div class="card-content">
+            <h3>Laugh Riot</h3>
+            <p>A hilarious romp guaranteed to tickle your funny bone.</p>
+            <span class="rating">8.0/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Comedy+Movie+2" alt="Comedy Movie 2">
+          <div class="card-content">
+            <h3>Joke’s On You</h3>
+            <p>Witty dialogues and memorable characters that deliver laughs.</p>
+            <span class="rating">7.5/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Comedy+Movie+3" alt="Comedy Movie 3">
+          <div class="card-content">
+            <h3>Comic Relief</h3>
+            <p>A lighthearted adventure filled with quirky humor.</p>
+            <span class="rating">8.3/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drama Movies Section -->
+    <section id="drama">
+      <h2 class="animate-on-scroll">Drama Movies</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Drama+Movie+1" alt="Drama Movie 1">
+          <div class="card-content">
+            <h3>Tearful Journey</h3>
+            <p>An emotional ride through love, loss, and redemption.</p>
+            <span class="rating">8.4/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Drama+Movie+2" alt="Drama Movie 2">
+          <div class="card-content">
+            <h3>Broken Dreams</h3>
+            <p>A poignant narrative that will tug at your heartstrings.</p>
+            <span class="rating">7.8/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Drama+Movie+3" alt="Drama Movie 3">
+          <div class="card-content">
+            <h3>Life Unraveled</h3>
+            <p>A story of unexpected turns and heartfelt moments.</p>
+            <span class="rating">8.1/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sci-Fi Movies Section -->
+    <section id="scifi">
+      <h2 class="animate-on-scroll">Sci-Fi Movies</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Sci-Fi+Movie+1" alt="Sci-Fi Movie 1">
+          <div class="card-content">
+            <h3>Galactic Odyssey</h3>
+            <p>A mind-bending journey through time and space.</p>
+            <span class="rating">8.7/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Sci-Fi+Movie+2" alt="Sci-Fi Movie 2">
+          <div class="card-content">
+            <h3>Future Imperfect</h3>
+            <p>An exploration of humanity in a dystopian tomorrow.</p>
+            <span class="rating">7.8/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Sci-Fi+Movie+3" alt="Sci-Fi Movie 3">
+          <div class="card-content">
+            <h3>Alien Encounters</h3>
+            <p>First contact with beings beyond our imagination.</p>
+            <span class="rating">8.1/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horror Movies Section -->
+    <section id="horror">
+      <h2 class="animate-on-scroll">Horror Movies</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Horror+Movie+1" alt="Horror Movie 1">
+          <div class="card-content">
+            <h3>Nightmare Realm</h3>
+            <p>A chilling tale that will keep you up at night.</p>
+            <span class="rating">8.0/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Horror+Movie+2" alt="Horror Movie 2">
+          <div class="card-content">
+            <h3>Haunted Shadows</h3>
+            <p>An eerie story that blurs the line between reality and the supernatural.</p>
+            <span class="rating">7.7/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Horror+Movie+3" alt="Horror Movie 3">
+          <div class="card-content">
+            <h3>Fear Unleashed</h3>
+            <p>A terrifying journey into the unknown.</p>
+            <span class="rating">8.2/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fantasy Movies Section -->
+    <section id="fantasy">
+      <h2 class="animate-on-scroll">Fantasy Movies</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Fantasy+Movie+1" alt="Fantasy Movie 1">
+          <div class="card-content">
+            <h3>Enchanted Realms</h3>
+            <p>A magical journey through lands of wonder and myth.</p>
+            <span class="rating">8.3/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Fantasy+Movie+2" alt="Fantasy Movie 2">
+          <div class="card-content">
+            <h3>Mythic Quest</h3>
+            <p>An epic adventure that blurs the lines between dreams and reality.</p>
+            <span class="rating">8.0/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="https://via.placeholder.com/300x450?text=Fantasy+Movie+3" alt="Fantasy Movie 3">
+          <div class="card-content">
+            <h3>Fabled Lands</h3>
+            <p>A journey into a world of legends and folklore.</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Rotten Bananas. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Link to external JS file -->
+  <script src="script.js"></script>
 </body>
-<footer>
-    <h2>About Us</h2>
-    <p>
-        Hotline: 1900 6666 <br> Email: rottenbananasRBseries@gmail.com <br> Address: 12D Funky Street
-    </p>
-</footer>
+</html>

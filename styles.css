@@ -1,222 +1,392 @@
-/* General Reset */
+/* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
-    transition: all 0.55s ease;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-a {
-    text-decoration: none;
+html {
+  scroll-behavior: smooth;
 }
-
 body {
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #F4E1C6; /* Aged Parchment */
+  color: #333;
+  overflow-x: hidden;
+}
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* Header */
-header {
-    background-color: #ffc619;
-    padding: 10px 120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-}
-
-.logo img {
-    width: 100px;
-}
-
+/* Navigation (Glassmorphism with Cinematic Charcoal) */
 nav {
-    margin: 0 300px 0 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  background: rgba(44, 44, 44, 0.9); /* Cinematic Charcoal */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  align-items: center;
+  color: #fff;
+}
+nav li {
+  position: relative;
+  transition: transform 0.2s ease;
+}
+nav li:hover {
+  transform: translateY(-3px);
+}
+/* User Menu Dropdown */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+.user-menu .user-btn {
+  cursor: pointer;
+  color: #fff;
+  padding: 0.5rem;
+}
+.user-menu .dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: rgba(44,44,44,0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  z-index: 1001;
+}
+.user-menu:hover .dropdown {
+  display: block;
+}
+.user-menu .dropdown a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  white-space: nowrap;
+}
+.user-menu .dropdown a:hover {
+  background: #2C2C2C;
+}
+/* Language Selector */
+.language-selector {
+  margin-left: 1rem;
+  cursor: pointer;
+  color: #fff;
 }
 
-.navbar-form {
-    width: 300px;
-    display: flex;
-    background: hsl(219, 30%, 45%);
-    border-radius: 15px;
-    height: 50px;
+/* Hero Section */
+header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+  background: url('MainPic.jpg') no-repeat center center/cover;
+  position: relative;
+}
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 30, 47, 0.7);
+}
+header .hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+header p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+header .cta-btn {
+  padding: 0.75rem 2rem;
+  background: #D4A517; /* Rotten Banana Yellow */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1rem;
+  color: #fff;
+}
+header .cta-btn:hover {
+  background: #E07A5F; /* Spoiled Orange */
 }
 
-.navbar-form input {
-    width: 90%;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 15px 0 0 15px;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap");
+
+/* Container for Category Buttons */
+.categories-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap; /* Ensures all buttons stay on one line */
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;  /* Adjust vertical spacing as needed */
 }
 
-.navbar-form input::placeholder {
-    color: rgba(0, 0, 0, 0.599);
-    font-weight: 800;
-    font-size: 15px;
+/* Base style for each button */
+.categories-container .btn {
+  position: relative;
+  width: 140px;  /* Reduced width so 6 buttons can fit */
+  height: 40px;  /* Reduced height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.navbar-form button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0 5px;
+/* Style for the anchor inside the button */
+.categories-container .btn a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85); /* Increased opacity */
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  padding: 5px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #000; /* Black text for contrast */
+  font-weight: 500;
+  z-index: 1;
+  transition: 0.5s;
+  backdrop-filter: blur(5px);
 }
 
-.material-symbols-outlined {
-    color: rgb(255, 255, 255);
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    transition: color 0.3s ease;
+/* On hover, increase letter spacing */
+.categories-container .btn:hover a {
+  letter-spacing: 2px;
 }
 
-.material-symbols-outlined:hover {
-    color: rgb(255, 231, 189);
+/* Gradient overlay on the left side */
+.categories-container .btn a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(45deg) translate(0);
+  transition: 0.5s;
+  filter: blur(0px);
 }
 
-.signup {
-    display: flex;
-    align-items: center;
-    font-weight: 800;
-    font-size: 16px;
+/* On hover, slide the gradient overlay */
+.categories-container .btn:hover a::before {
+  transform: skewX(45deg) translate(100px);
 }
 
-.signup span {
-    color: rgba(0, 0, 0, 0.755);
+/* Bottom "lightup" effect */
+.categories-container .btn::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -3px;
+  width: 20px;
+  height: 5px;
+  background: #000;
+  border-radius: 10px;
+  transition: 0.25s;
+  transition-delay: 0.25s;
+}
+.categories-container .btn:hover::before {
+  bottom: 0;
+  height: 50%;
+  width: 70%;
+  border-radius: 30px;
 }
 
-.signup:hover span, .signup:hover button span {
-    color: white;
+/* Top "lightup" effect */
+.categories-container .btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -3px;
+  width: 20px;
+  height: 5px;
+  background: #000;
+  border-radius: 10px;
+  transition: 0.25s;
+  transition-delay: 0.25s;
+}
+.categories-container .btn:hover::after {
+  top: 0;
+  height: 50%;
+  width: 70%;
+  border-radius: 30px;
 }
 
-.signup button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin-left: 3px;
-    height: 45px;
-    padding: 0 5px;
+/* Optional: Different glow colors for each button */
+/* For example, button 1: */
+.categories-container .btn:nth-child(1)::before,
+.categories-container .btn:nth-child(1)::after {
+  background: #ff1f71;
+  box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+/* Repeat for buttons 2 and 3 (or adjust as needed) */
+.categories-container .btn:nth-child(2)::before,
+.categories-container .btn:nth-child(2)::after {
+  background: #2db2ff;
+  box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+.categories-container .btn:nth-child(3)::before,
+.categories-container .btn:nth-child(3)::after {
+  background: #1eff45;
+  box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+}
+.categories-container .btn:nth-child(4)::before,
+.categories-container .btn:nth-child(4)::after {
+  background: #1ee5ff;
+  box-shadow: 0 0 5px #1ee5ff, 0 0 15px #1ee5ff, 0 0 30px #1ee5ff, 0 0 60px #1ee5ff;
+}
+.categories-container .btn:nth-child(5)::before,
+.categories-container .btn:nth-child(5)::after {
+  background: #d21eff;
+  box-shadow: 0 0 5px #d21eff, 0 0 15px #d21eff, 0 0 30px #d21eff, 0 0 60px #d21eff;
+}
+.categories-container .btn:nth-child(6)::before,
+.categories-container .btn:nth-child(6)::after {
+  background: #fbff1e;
+  box-shadow: 0 0 5px #fbff1e, 0 0 15px #fbff1e, 0 0 30px #fbff1e, 0 0 60px #fbff1e;
+}
+/* Section Titles */
+section {
+  padding: 4rem 2rem;
+}
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #D4A517; /* Rotten Banana Yellow */
+  border-radius: 3px;
 }
 
-/* Genre Banner */
-.genre-banner {
-    background: hsl(218, 31%, 25%);
-    padding: 1rem 0.5rem;
-    text-align: center;
-}
-
-.genre-banner ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0;
-}
-
-.genre-banner ul li a {
-    color: #333;
-    font-weight: 800;
-    padding: 0.5rem 1rem;
-    background: white;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-.genre-banner ul li a:hover {
-    color: rgb(0, 0, 0);
-    background: rgb(255, 215, 146);
-    transform: scale(1.1);
-}
-
-/* Title */
-.Title h1 {
-    color: #000000;
-    font-size: 45px;
-    font-weight: 800;
-    text-align: center;
-    margin: 2rem 0;
-}
-
-/* Layout */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Movie Grid */
+/* Movie Grid & Glassmorphism Cards */
 .movie-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.card-content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.card-content p {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.card-content .rating {
+  font-weight: bold;
+  color: #D4A517;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Movie Card */
-article {
-    display: flex;
-    gap: 1rem;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1rem;
-    align-items: center;
-    cursor: pointer;
+/* Fade In Animation on Scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-article:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Movie Poster (Left) */
-.movie-poster {
-    flex: 1 1 auto;
-    width: 60px;
-    height: 360px;
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-position: center; /* Keeps the focus on the center of the image */
-    border-radius: 8px;
-    overflow: hidden; /* Ensures the image stays within the defined dimensions */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-/* Movie Info (Right) */
-.movie-info {
-    flex: 2 1 400px;
-    padding: 0 1rem;
-}
-
-.movie-info h3 {
-    font-size: 30px;
-    color: #ffc619;
-    margin-bottom: 0.5rem;
-}
-
-.movie-info p {
-    margin-bottom: 0.5rem;
-    color: #555;
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Footer */
+/* Footer (Mold Green) */
 footer {
-    background: hsl(218, 31%, 25%);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-footer h2 {
-    font-size: 1.8rem;
-    color: #ffc619;
-}
-
-footer p {
-    margin-top: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  background: #6B8E23;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
