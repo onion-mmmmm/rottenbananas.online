@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="container">
         <h2>Sign Up</h2>
+        
         <form id="signupForm">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -19,6 +21,8 @@
             <label for="confirmPassword">Confirm Password:</label>
             <input type="password" id="confirmPassword" name="confirmPassword" required>
 
+            <!-- Thêm reCAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div>
             <button type="submit">Sign Up</button>
         </form>
     </div>
@@ -49,6 +53,12 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
+            const recaptchaResponse = grecaptcha.getResponse();
+
+            if (!recaptchaResponse) {
+                alert('Please complete the reCAPTCHA.');
+                return;
+            }
 
             if (password !== confirmPassword) {
                 alert('Passwords do not match!');
@@ -59,10 +69,8 @@
             
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    console.log('User created:', userCredential.user);
-                    setTimeout(() => {
-                        window.location.href = 'https://rottenbananas.online/'; // Thay thế bằng trang đích
-                    }, 2000);
+                    sendEmailVerification(userCredential.user);
+                    alert('Verification email sent. Please check your inbox.');
                 })
                 .catch((error) => {
                     console.error('Firebase Error:', error);
