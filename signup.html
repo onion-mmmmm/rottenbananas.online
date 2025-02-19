@@ -64,17 +64,19 @@
                 alert('Passwords do not match!');
                 return;
             }
-
-            alert('Creating account...');
             
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    sendEmailVerification(userCredential.user);
-                    alert('Verification email sent. Please check your inbox.');
-                })
-                .catch((error) => {
-                    console.error('Firebase Error:', error);
-                    alert(error.message);
+                    const user = userCredential.user;
+
+                    sendEmailVerification(user)
+                        .then(() => {
+                            alert('Verification email sent. Please check your inbox.');
+                        })
+                        .catch((error) => {
+                            console.error('Firebase Error:', error);
+                            alert(error.message);
+                        });
                 });
         });
     </script>
