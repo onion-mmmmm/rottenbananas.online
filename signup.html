@@ -1,84 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Tích hợp reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Sign Up</h2>
-        
-        <form id="signupForm">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <!-- Thêm trường Username -->
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
 
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
 
-            <!-- Thêm reCAPTCHA -->
-            <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
-    
-    <script type="module">
-        // Import Firebase SDK
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required />
 
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco", // This is a placeholder, replace with your actual API key
-            authDomain: "rottenbananas-signup.firebaseapp.com",
-            projectId: "rottenbananas-signup",
-            storageBucket: "rottenbananas-signup.firebasestorage.app",
-            messagingSenderId: "841550936785",
-            appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
-        };
+      <!-- reCAPTCHA -->
+      <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div>
+      
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+  <script type="module">
+    // Import các module Firebase cần thiết
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      updateProfile 
+    } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
-        // Handle sign-up form submission
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const recaptchaResponse = grecaptcha.getResponse();
+    // Cấu hình Firebase (dùng cấu hình hiện có)
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
 
-            if (!recaptchaResponse) {
-                alert('Please complete the reCAPTCHA.');
-                return;
-            }
+    // Khởi tạo Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-                    sendEmailVerification(user)
-                        .then(() => {
-                            alert('Verification email sent. Please check your inbox.');
-                        })
-                        .catch((error) => {
-                            console.error('Firebase Error:', error);
-                            alert(error.message);
-                        });
-                });
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const recaptchaResponse = grecaptcha.getResponse();
+
+      if (!recaptchaResponse) {
+        alert('Please complete the reCAPTCHA.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      // Tạo tài khoản mới
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          // Cập nhật displayName với username
+          updateProfile(user, { displayName: username })
+            .then(() => {
+              // Sinh mã OTP (6 chữ số)
+              const otp = Math.floor(100000 + Math.random() * 900000).toString();
+              // Lưu mã OTP tạm thời vào localStorage (cho demo; dùng backend để lưu trong thực tế)
+              localStorage.setItem('signupOtp', otp);
+              console.log("OTP sent to email:", otp); // Debug: In ra console
+              alert('An OTP code has been sent to your email. Please check your inbox.');
+              // Chuyển hướng đến trang xác nhận OTP
+              window.location.href = 'verify.html';
+            })
+            .catch((error) => {
+              console.error('Update profile error:', error);
+              alert('Failed to update profile.');
+            });
+        })
+        .catch((error) => {
+          console.error('Signup Error:', error);
+          alert(error.message);
         });
-    </script>
+    });
+  </script>
 </body>
 </html>
