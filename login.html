@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco", // This is a placeholder, replace with your actual API key
+            authDomain: "rottenbananas-signup.firebaseapp.com",
+            projectId: "rottenbananas-signup",
+            storageBucket: "rottenbananas-signup.firebasestorage.app",
+            messagingSenderId: "841550936785",
+            appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log('User logged in:', userCredential.user);
+                    setTimeout(() => {
+                        window.location.href = 'https://rottenbananas.online/';
+                    }, 2000);
+                })
+                .catch((error) => {
+                    console.error('Firebase Error:', error);
+                    alert(error.message);
+                });
+        });
+    </script>
+</body>
+</html>
