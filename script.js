@@ -35,11 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   
   // Nav search functionality triggers main search
-  document
-    .getElementById("nav-search-btn")
+  document.getElementById("nav-search-btn")
     .addEventListener("click", function () {
       const navQuery = document.getElementById("nav-search-input").value;
       document.getElementById("search-input").value = navQuery;
       searchMovies();
     });
-  

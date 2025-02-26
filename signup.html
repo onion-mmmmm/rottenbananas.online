@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firebase Auth Integration</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sign In Form -->
+    <h2>Sign In</h2>
+    <form id="signInForm">
+      <label for="signin-email">Email:</label>
+      <input type="email" id="signin-email" name="email" required />
+      
+      <label for="signin-password">Password:</label>
+      <input type="password" id="signin-password" name="password" required />
+      
+      <button type="submit" id="signInButton">Sign In</button>
+    </form>
+
+    <hr />
+
+    <!-- Sign Up Form -->
+    <h2>Sign Up</h2>
+    <form id="signUpForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      
+      <label for="signup-email">Email:</label>
+      <input type="email" id="signup-email" name="email" required />
+      
+      <label for="signup-password">Password:</label>
+      <input type="password" id="signup-password" name="password" required />
+      
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required />
+      
+      <!-- Google reCAPTCHA widget -->
+      <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+      
+      <button type="submit" id="signUpButton">Sign Up</button>
+    </form>
+  </div>
+
+  <script type="module">
+    // Import Firebase modules from the modular SDK
+    import { initializeApp } from "firebase/app"
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+    // Your Firebase configuration – replace these with your real project values
+    const firebaseConfig = {
+  apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+  authDomain: "rottenbananas-signup.firebaseapp.com",
+  projectId: "rottenbananas-signup",
+  storageBucket: "rottenbananas-signup.firebasestorage.app",
+  messagingSenderId: "841550936785",
+  appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Function to validate the password (at least 6 characters, one uppercase, one lowercase, and one special character)
+    function isPasswordValid(password) {
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{6,}$/;
+      return regex.test(password);
+    }
+
+    // Functions to limit the number of accounts created on a single device
+    function canCreateAccount() {
+      let count = localStorage.getItem("accountCount") || 0;
+      return parseInt(count) < 5;
+    }
+    function incrementAccountCount() {
+      let count = localStorage.getItem("accountCount") || 0;
+      count = parseInt(count) + 1;
+      localStorage.setItem("accountCount", count);
+    }
+
+    // Function to generate a 6-digit OTP
+    function generateOTP() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    // Simulate sending the OTP via email (replace with actual Mailgun API integration)
+    function sendOTP(email, otp) {
+      console.log("Sending OTP", otp, "to", email);
+      alert("An OTP has been sent to your email: " + email);
+      // TODO: Integrate with Mailgun API for actual email sending
+    }
+
+    // Handle Sign In form submission
+    document.getElementById("signInForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("signin-email").value.trim();
+      const password = document.getElementById("signin-password").value;
+      
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // Redirect to the protected resources page upon successful sign in
+        window.location.href = "/protected-resources.html";
+      } catch (error) {
+        alert("Sign In Error: " + error.message);
+      }
+    });
+
+    // Handle Sign Up form submission
+    document.getElementById("signUpForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Verify reCAPTCHA – note: in a production environment, you should verify the token on your server
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        alert("Please complete the reCAPTCHA");
+        return;
+      }
+
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+      if (!isPasswordValid(password)) {
+        alert("Password must be at least 6 characters long and include 1 special character, 1 uppercase letter, and 1 lowercase letter.");
+        return;
+      }
+      if (!canCreateAccount()) {
+        alert("Account creation limit reached on this device.");
+        return;
+      }
+
+      try {
+        // Create a new user with Firebase Auth
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        // Save additional user details (e.g., username) in Firestore
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+          username: username,
+          email: email
+        });
+        // Increment account creation count on this device
+        incrementAccountCount();
+
+        // Generate an OTP, store it temporarily (for production, store it securely on your server), and simulate sending it
+        const otp = generateOTP();
+        localStorage.setItem("signupOTP", otp);
+        localStorage.setItem("signupEmail", email);
+        sendOTP(email, otp);
+
+        // Redirect the user to an OTP verification page (implement the verify.html page accordingly)
+        window.location.href = "verify.html";
+      } catch (error) {
+        alert("Sign Up Error: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
