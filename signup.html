@@ -3,63 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Firebase Auth Integration</title>
+  <title>Sign Up</title>
   <link rel="stylesheet" href="style.css" />
   <!-- Google reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
   <div class="container">
-    <!-- Sign Up Form -->
     <h2>Sign Up</h2>
-    <form id="signUpForm">
+    <form id="signupForm">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required />
-      
-      <label for="signup-email">Email:</label>
-      <input type="email" id="signup-email" name="email" required />
-      
-      <label for="signup-password">Password:</label>
-      <input type="password" id="signup-password" name="password" required />
-      
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirmPassword" name="confirmPassword" required />
-      
+
       <!-- Google reCAPTCHA widget -->
-      <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-      
-      <button type="submit" id="signUpButton">Sign Up</button>
+      <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div>
+
+      <button type="submit">Sign Up</button>
     </form>
+    <p>Already have an account? <a href="login.html">Log In</a></p>
   </div>
 
   <script type="module">
-    // Import Firebase modules from the modular SDK
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
     import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
-    // Your Firebase configuration – replace these with your real project values
+    // Firebase configuration (thay thế YOUR_... bằng giá trị thật)
     const firebaseConfig = {
-  apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
-  authDomain: "rottenbananas-signup.firebaseapp.com",
-  projectId: "rottenbananas-signup",
-  storageBucket: "rottenbananas-signup.firebasestorage.app",
-  messagingSenderId: "841550936785",
-  appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
-};
-
-    // Initialize Firebase
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Function to validate the password (at least 6 characters, one uppercase, one lowercase, and one special character)
+    // Hàm kiểm tra password: tối thiểu 6 ký tự, chứa 1 chữ hoa, 1 chữ thường và 1 ký tự đặc biệt
     function isPasswordValid(password) {
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{6,}$/;
       return regex.test(password);
     }
 
-    // Functions to limit the number of accounts created on a single device
+    // Giới hạn số tài khoản trên 1 thiết bị (sử dụng localStorage)
     function canCreateAccount() {
       let count = localStorage.getItem("accountCount") || 0;
       return parseInt(count) < 5;
@@ -70,38 +67,22 @@
       localStorage.setItem("accountCount", count);
     }
 
-    // Function to generate a 6-digit OTP
+    // Hàm tạo OTP 6 chữ số
     function generateOTP() {
       return Math.floor(100000 + Math.random() * 900000).toString();
     }
 
-    // Simulate sending the OTP via email (replace with actual Mailgun API integration)
+    // Giả lập gửi OTP qua Mailgun (thay thế bằng API thực tế)
     function sendOTP(email, otp) {
       console.log("Sending OTP", otp, "to", email);
       alert("An OTP has been sent to your email: " + email);
-      // TODO: Integrate with Mailgun API for actual email sending
+      // TODO: Tích hợp Mailgun API
     }
 
-    // Handle Sign In form submission
-    document.getElementById("signInForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("signin-email").value.trim();
-      const password = document.getElementById("signin-password").value;
-      
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        // Redirect to the protected resources page upon successful sign in
-        window.location.href = "/protected-resources.html";
-      } catch (error) {
-        alert("Sign In Error: " + error.message);
-      }
-    });
-
-    // Handle Sign Up form submission
-    document.getElementById("signUpForm").addEventListener("submit", async (e) => {
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // Verify reCAPTCHA – note: in a production environment, you should verify the token on your server
+      // Kiểm tra reCAPTCHA (thường phải gửi token lên server để xác minh)
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
         alert("Please complete the reCAPTCHA");
@@ -109,8 +90,8 @@
       }
 
       const username = document.getElementById("username").value.trim();
-      const email = document.getElementById("signup-email").value.trim();
-      const password = document.getElementById("signup-password").value;
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
 
       if (password !== confirmPassword) {
@@ -127,26 +108,29 @@
       }
 
       try {
-        // Create a new user with Firebase Auth
+        // Tạo tài khoản trên Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        // Save additional user details (e.g., username) in Firestore
+        // Lưu username vào Firestore để người dùng có thể dùng username khi đăng nhập
         await setDoc(doc(db, "users", userCredential.user.uid), {
           username: username,
           email: email
         });
-        // Increment account creation count on this device
+        // Cập nhật số tài khoản đã tạo trên thiết bị
         incrementAccountCount();
 
-        // Generate an OTP, store it temporarily (for production, store it securely on your server), and simulate sending it
+        // Tạo OTP và lưu tạm (trên production, lưu trên server)
         const otp = generateOTP();
         localStorage.setItem("signupOTP", otp);
         localStorage.setItem("signupEmail", email);
+
+        // Gửi OTP qua Mailgun
         sendOTP(email, otp);
 
-        // Redirect the user to an OTP verification page (implement the verify.html page accordingly)
+        // Chuyển hướng đến trang Verify để nhập OTP
         window.location.href = "verify.html";
       } catch (error) {
-        alert("Sign Up Error: " + error.message);
+        console.error("Error during sign up:", error);
+        alert(error.message);
       }
     });
   </script>
