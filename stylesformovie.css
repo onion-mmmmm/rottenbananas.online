@@ -1,227 +1,252 @@
-/* General Reset */
-* {
+  /* Global Styles */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
-    transition: all 0.55s ease;
-}
-
-a {
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #F4E1C6; /* Aged Parchment */
+    color: #333;
+    overflow-x: hidden;
+  }
+  a {
+    color: inherit;
     text-decoration: none;
-}
+  }
 
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-}
+      /* =======================
+         Navigation (same as index)
+         ======================= */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem 2rem;
+        background: rgba(44, 44, 44, 0.9); /* Cinematic Charcoal */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+      }
+      nav ul {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        align-items: center;
+        color: #fff;
+      }
+      nav li {
+        position: relative;
+        transition: transform 0.2s ease;
+      }
+      nav li:hover {
+        transform: translateY(-3px);
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-right: 1rem;
+      }
+      .search-bar input {
+        padding: 0.4rem 0.6rem;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+      }
+      .search-bar button {
+        padding: 0.4rem 0.8rem;
+        background: #D4A517; /* Rotten Banana Yellow */
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .search-bar button:hover {
+        background: #E07A5F; /* Spoiled Orange */
+      }
 
-/* Header */
-header {
-    background-color: #ffc619;
-    padding: 10px 120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-}
+      /* User Menu & Language */
+      .user-menu {
+        position: relative;
+        display: inline-block;
+      }
+      .user-btn {
+        cursor: pointer;
+        color: #fff;
+        padding: 0.5rem;
+      }
+      .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #2C2C2C;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        margin-top: 0.5rem;
+        z-index: 1001;
+      }
+      .user-menu:hover .dropdown {
+        display: block;
+      }
+      .user-menu .dropdown button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #fff;
+        white-space: nowrap;
+        background: rgb(0, 0, 0, 0);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+      }
+      .user-menu .dropdown button:hover {
+        background: #2C2C2C;
+      }
+      .dropdown a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #fff;
+        white-space: nowrap;
+      }
+      .dropdown a:hover {
+        background: #2C2C2C;
+      }
+      .language-selector {
+        margin-left: 1rem;
+        cursor: pointer;
+        color: #fff;
+      }
 
-.logo img {
-    width: 100px;
-}
+      /* =======================
+         Detail Banner
+         ======================= */
+      .detail-banner {
+        position: relative;
+        height: 90vh;
+        background: url('pics.jpg')
+          no-repeat center center/cover;
+        margin-top: 70px; /* Adjust for fixed nav */
+      }
+      .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(52, 52, 63, 0.5); /* Lighter overlay for readability */
+      }
+      .banner-content {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+      .banner-content h1 {
+        font-size: 3rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Improve readability */
+      }
 
-nav {
-    margin: 0 300px 0 0;
-}
+      /* =======================
+         Movie Detail Container (Glassmorphism)
+         ======================= */
+      .movie-detail-section {
+        padding: 4rem 2rem;
+        display: flex;
+        justify-content: center;
+      }
+      .movie-detail-container {
+        background: rgba(85, 83, 83, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        max-width: 1000px;
+        margin: auto;
+      }
+      .poster img {
+        width: 300px;
+        border-radius: 10px;
 
-.navbar-form {
-    width: 300px;
-    display: flex;
-    background: hsl(219, 30%, 45%);
-    border-radius: 15px;
-    height: 50px;
-}
+      }
+      .details {
+        flex: 1;
+        color: #ffffff;
+      }
+      .details h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .details p {
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+      .details .synopsis {
+        margin-top: 1rem;
+      }
+      .action-buttons {
+        margin-top: 1rem;
+      }
+      .action-buttons .btn {
+        padding: 0.5rem 1rem;
+        background: #D4A517; /* Rotten Banana Yellow */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-right: 1rem;
+        transition: background 0.3s ease;
+      }
+      .action-buttons .btn:hover {
+        background: #E07A5F; /* Spoiled Orange */
+      }
 
-.navbar-form input {
-    width: 90%;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 15px 0 0 15px;
-}
+      /* =======================
+         Footer
+         ======================= */
+      footer {
+        padding: 2rem;
+        text-align: center;
+        background: #6B8E23; /* Mold Green */
+        color: #fff;
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
 
-.navbar-form input::placeholder {
-    color: rgba(0, 0, 0, 0.599);
-    font-weight: 800;
-    font-size: 15px;
-}
-
-.navbar-form button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0 5px;
-}
-
-.material-symbols-outlined {
-    color: rgb(255, 255, 255);
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    transition: color 0.3s ease;
-}
-
-.material-symbols-outlined:hover {
-    color: rgb(255, 231, 189);
-}
-
-.signup {
-    display: flex;
-    align-items: center;
-    font-weight: 800;
-    font-size: 16px;
-}
-
-.signup span {
-    color: rgba(0, 0, 0, 0.755);
-}
-
-.signup:hover span, .signup:hover button span {
-    color: white;
-}
-
-.signup button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin-left: 3px;
-    height: 45px;
-    padding: 0 5px;
-}
-
-/* Genre Banner */
-.genre-banner {
-    background: hsl(218, 31%, 25%);
-    padding: 1rem 0.5rem;
-    text-align: center;
-}
-
-.genre-banner ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0;
-}
-
-.genre-banner ul li a {
-    color: #333;
-    font-weight: 800;
-    padding: 0.5rem 1rem;
-    background: white;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-.genre-banner ul li a:hover {
-    color: rgb(0, 0, 0);
-    background: rgb(255, 215, 146);
-    transform: scale(1.1);
-}
-
-/* Layout */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Movie Grid */
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-article {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-article:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Movie Poster Styling */
-.movie-poster {
-    background-size: cover;
-    background-position: center;
-    height: 240px;
-}
-
-/* Movie Info */
-.movie-info {
-    padding: 1rem;
-    text-align: left;
-}
-
-.movie-info h3 {
-    font-size: 1.4rem;
-    color: #ffc619;
-    margin-bottom: 0.5rem;
-}
-
-.movie-info p {
-    margin-bottom: 0.5rem;
-}
-
-/* Movie Page Specific Styles */
-.movie-review {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.movie-trailer iframe {
-    flex: 1 1 100%;
-    border-radius: 8px;
-    max-height: 360px;
-}
-
-.movie-info {
-    flex: 1 1 400px;
-}
-
-.movie-info h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #000;
-}
-
-/* Footer */
-footer {
-    background: hsl(218, 31%, 25%);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-footer h2 {
-    font-size: 1.8rem;
-    color: #ffc619;
-}
-
-footer p {
-    margin-top: 0.5rem;
-}
+      /* =======================
+         Animation (Animate on Scroll)
+         ======================= */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }

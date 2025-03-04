@@ -41,3 +41,45 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("search-input").value = navQuery;
       searchMovies();
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const chatWidget = document.getElementById("chat-widget");
+      const chatIcon = chatWidget.querySelector(".chat-icon");
+      const chatClose = chatWidget.querySelector(".chat-close");
+      const sendBtn = document.getElementById("send-btn");
+      const chatInput = document.getElementById("chat-input");
+      const chatBody = chatWidget.querySelector(".chat-body");
+    
+      // Mở chat box khi click vào icon
+      chatIcon.addEventListener("click", function () {
+        chatWidget.classList.remove("closed");
+        chatWidget.classList.add("open");
+      });
+    
+      // Đóng chat box khi click vào nút đóng
+      chatClose.addEventListener("click", function () {
+        chatWidget.classList.remove("open");
+        chatWidget.classList.add("closed");
+      });
+    
+      // Xử lý sự kiện gửi tin nhắn
+      sendBtn.addEventListener("click", function () {
+        const message = chatInput.value.trim();
+        if (message !== "") {
+          const messageElem = document.createElement("p");
+          messageElem.textContent = message;
+          chatBody.appendChild(messageElem);
+          chatInput.value = "";
+          // Tự động cuộn xuống cuối chat
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+      });
+    
+      // Gửi tin nhắn bằng phím Enter
+      chatInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          sendBtn.click();
+        }
+      });
+    });
+    

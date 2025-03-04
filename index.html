@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rotten Bananas - Movie Reviews</title>
   <!-- FontAwesome for icons -->
-  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
   <!-- Link to external CSS file -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,8 +13,14 @@
   <!-- Navigation -->
   <nav>
     <div class="logo">
-      <img src="movie review logo.png" alt="Logo" />
-      Rotten Bananas
+      <a href="index.html">
+        <img src="movie review logo.png" alt="Logo" />
+        Rotten Bananas
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Search movies..." />
+      <button id="nav-search-btn">Search</button>
     </div>
     <ul>
       <li><a href="#action">Action</a></li>
@@ -53,6 +59,29 @@
     <div class="btn"><a href="#scifi">Sci-Fi</a></div>
     <div class="btn"><a href="#horror">Horror</a></div>
     <div class="btn"><a href="#fantasy">Fantasy</a></div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget" class="chat-widget closed">
+    <div class="chat-icon">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        Rottenbananas Customer Service
+        <span class="chat-close"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="chat-body">
+        <!-- Các tin nhắn chat sẽ hiển thị tại đây -->
+        <p>Hi, how can I help you today?</p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Nhập tin nhắn..." id="chat-input" />
+        <button class="send-btn" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- Movie Categories -->
@@ -280,12 +309,11 @@
         if (docSnap.exists()) {
           username = docSnap.data().username;
         }
-        userBtn.textContent = username;
+        userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
         // Hiển thị nút Log Out trong dropdown
         userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
         document.getElementById("logoutBtn").addEventListener("click", async () => {
           await signOut(auth);
-          alert("Logged out successfully.");
           window.location.href = "login.html";
         });
       } else {

@@ -4,30 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Log In</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Google reCAPTCHA -->
+  <!-- FontAwesome for icons -->
+  <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="stylesforsignup.css" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    /* Styles for the password input container and toggle icon */
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .password-container input {
+      width: 100%;
+      padding-right: 2.5em; /* Space for the icon */
+    }
+    .password-container .toggle-password {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="movie review logo.png" alt="Logo" />
+        Rotten Bananas
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Search movies..." />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="#action">Action</a></li>
+      <li><a href="#comedy">Comedy</a></li>
+      <li><a href="#drama">Drama</a></li>
+      <li><a href="#scifi">Sci-Fi</a></li>
+      <li><a href="#horror">Horror</a></li>
+      <li><a href="#fantasy">Fantasy</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
+  
   <div class="container">
-    <h2>Log In</h2>
-    <form id="loginForm">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required />
+    <div class="form-container">
+      <h2>Log In</h2>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required />
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
+        <label for="password">Password:</label>
+        <div class="password-container">
+          <input type="password" id="password" required />
+          <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+        </div>
 
-      <!-- Google reCAPTCHA widget -->
-      <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div>
+        <!-- <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div> -->
 
-      <button type="submit">Log In</button>
-    </form>
-    <p><a href="change_password.html">Forgot Password?</a></p>
-    <hr />
-    <button id="gmailLogin">Log In with Gmail</button>
+        <button type="submit">Log In</button>
+      </form>
+      <p>Forgot Password? <a href="before_change_password.html">Change password</a></p>
+      <hr />
+      <!-- Log in with Google button -->
+      <button id="googleLogin" class="google">Log In with Google</button>
+    </div>
   </div>
-
+  
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
@@ -41,19 +96,14 @@
       messagingSenderId: "841550936785",
       appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
     };
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Đăng nhập bằng username và password (tra cứu email từ Firestore)
+    // Log in using username and password (find email from Firestore)
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (!recaptchaResponse) {
-        alert("Please complete the reCAPTCHA");
-        return;
-      }
 
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value;
@@ -71,7 +121,6 @@
           userEmail = doc.data().email;
         });
         await signInWithEmailAndPassword(auth, userEmail, password);
-        alert("Login successful!");
         window.location.href = "index.html";
       } catch (error) {
         console.error("Login error:", error);
@@ -79,16 +128,31 @@
       }
     });
 
-    // Đăng nhập với Gmail (GoogleAuthProvider)
-    document.getElementById("gmailLogin").addEventListener("click", async () => {
+    // Log in with Google
+    document.getElementById("googleLogin").addEventListener("click", async () => {
       const provider = new GoogleAuthProvider();
       try {
         await signInWithPopup(auth, provider);
-        alert("Login with Gmail successful!");
+        alert("Login with Google successful!");
         window.location.href = "index.html";
       } catch (error) {
-        console.error("Gmail login error:", error);
+        console.error("Google login error:", error);
         alert(error.message);
+      }
+    });
+
+    // Toggle password visibility using eye icon
+    const togglePassword = document.getElementById("togglePassword");
+    togglePassword.addEventListener("click", () => {
+      const passwordInput = document.getElementById("password");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
       }
     });
   </script>
