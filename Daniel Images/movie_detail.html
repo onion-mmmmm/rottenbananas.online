@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>On the Ferris wheel</title>
+    <!-- FontAwesome for icons -->
+    <!-- FontAwesome for icons -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="stylesformovie.css">
+  </head>
+  <body>
+    <!-- Navigation (same as index) -->
+   <!-- Navigation (giống index) -->
+   <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="Logo nth.jpg" alt="Logo" />
+        DANIEL IMAGES
+      </a>
+    </div>
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Search movies..." />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="index.html#acion">GR.7</a></li>
+      <li><a href="index.html#comedy">GR.8</a></li>
+      <li><a href="index.html#drama">GR.9</a></li>
+      <li><a href="index.html#scifi">GR.10</a></li>
+      <li><a href="index.html#horror">GR.11</a></li>
+      <li><a href="index.html#fantasy">GR.12</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
+
+    <!-- Banner Section -->
+    <header class="detail-banner">
+      <div class="banner-overlay"></div>
+      <div class="banner-content animate-on-scroll">
+        <h1>On the Ferris wheel</h1>
+      </div>
+    </header>
+
+    <!-- Movie Detail Container -->
+    <main>
+      <section class="movie-detail-section animate-on-scroll">
+        <div class="movie-detail-container">
+          <div class="poster">
+            <img src="gr.7 - p1.jpg" />
+          </div>
+          <div class="details">
+            <h2>On the Ferris wheel</h2>
+            <p><strong>Released:</strong> 2019</p>
+            <p><strong>Photo Shooter:</strong> DTD</p>
+          
+            <p class="synopsis">
+                A nice memory as I was travelling to Nha Trang for the first time with my family
+            </p>
+            <p>Rating: ★★★★☆</p>
+            <div class="action-buttons">
+              
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Rotten Bananas. All Rights Reserved.</p>
+    </footer>
+
+        <!-- Firebase Authentication & Firestore Script cho User Menu (giống index) -->
+        <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+          import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+          import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+      
+          const firebaseConfig = {
+            apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+            authDomain: "rottenbananas-signup.firebaseapp.com",
+            projectId: "rottenbananas-signup",
+            storageBucket: "rottenbananas-signup.firebasestorage.app",
+            messagingSenderId: "841550936785",
+            appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+          };
+      
+          const app = initializeApp(firebaseConfig);
+          const auth = getAuth(app);
+          const db = getFirestore(app);
+      
+          onAuthStateChanged(auth, async (user) => {
+            const userBtn = document.getElementById("userBtn");
+            const userDropdown = document.getElementById("userDropdown");
+            if (user) {
+              // Lấy username từ Firestore
+              const docRef = doc(db, "users", user.uid);
+              const docSnap = await getDoc(docRef);
+              let username = "User";
+              if (docSnap.exists()) {
+                username = docSnap.data().username;
+              }
+              userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
+              // Hiển thị nút Log Out trong dropdown
+              userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
+              document.getElementById("logoutBtn").addEventListener("click", async () => {
+                await signOut(auth);
+                alert("Logged out successfully.");
+                window.location.href = "login.html";
+              });
+            } else {
+              userBtn.innerHTML = 'Log In / Sign Up <i class="fas fa-caret-down"></i>';
+              userDropdown.innerHTML = '<a href="login.html">Log In</a><a href="signup.html">Sign Up</a>';
+            }
+          });
+        </script>
+
+    <script>
+      // Intersection Observer for Animate on Scroll
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+
+      // (Optional) Nav search functionality – can be expanded as needed
+      document.getElementById("nav-search-btn").addEventListener("click", function () {
+        // Add search behavior here if desired.
+      });
+    </script>
+  </body>
+</html>

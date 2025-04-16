@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phan Hai Dang - 05 - 12TH2 </title>
+  <!-- FontAwesome for icons -->
+  <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="Logo nth.jpg" alt="Logo" />
+        DANIEL IMAGES
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Search images..." />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="#action">GR. 7</a></li>
+      <li><a href="#comedy">GR. 8</a></li>
+      <li><a href="#drama">GR. 9</a></li>
+      <li><a href="#scifi">GR. 10</a></li>
+      <li><a href="#horror">GR. 11</a></li>
+      <li><a href="#fantasy">GR. 12</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-content animate-on-scroll">
+      <h1>PHAN HAI DANG - 05 - 12TH2</h1>
+      <p>Discover the best images about the PHAN HAI DANG. Immerse yourself in the world of DANG with our curated collections.</p>
+      <button class="cta-btn" onclick="document.querySelector('#action').scrollIntoView()">Explore Now</button>
+    </div>
+  </header>
+
+  <!-- Neuromorphic Category Buttons -->
+  <div class="categories-container">
+    <div class="btn"><a href="#action">GRADE 7</a></div>
+    <div class="btn"><a href="#comedy">GRADE 8</a></div>
+    <div class="btn"><a href="#drama">GRADE 9</a></div>
+    <div class="btn"><a href="#scifi">GRADE 10</a></div>
+    <div class="btn"><a href="#horror">GRADE 11</a></div>
+    <div class="btn"><a href="#fantasy">GRADE 12</a></div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget" class="chat-widget closed">
+    <div class="chat-icon">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        CCCP memory Service
+        <span class="chat-close"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="chat-body">
+        <!-- Các tin nhắn chat sẽ hiển thị tại đây -->
+        <p>Hi, how can I help you today?</p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Nhập tin nhắn..." id="chat-input" />
+        <button class="send-btn" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRADE Categories -->
+  <main>
+    <!-- GRADE 7 -->
+    <section id="action">
+      <h2 class="animate-on-scroll">GRADE 7</h2>
+      <div class="movie-grid">
+        <a href="movie_detail.html" class="card-link">
+          <div class="card animate-on-scroll">
+            <img src="gr.7 - p1.jpg" alt="DANIEL P1">
+            <div class="card-content">
+              <h3>On the Ferris wheel</h3>
+              <p>My first time on a Ferris wheel!!!</p>
+              <span class="rating">8.2/10</span>
+            </div>
+          </div>
+        </a>
+        <div class="card animate-on-scroll">
+          <img src="gr.7 - p3.jpg" alt="DANIEL P2">
+          <div class="card-content">
+            <h3>Being a conqueror</h3>
+            <p>I have discovered a new place!</p>
+            <span class="rating">8.3/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr.7 - p2.jpg" alt="DANIEL P3">
+          <div class="card-content">
+            <h3>Visiting a coffee shop</h3>
+            <p>A good memory with my parents</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 8 -->
+    <section id="comedy">
+      <h2 class="animate-on-scroll">GRADE 8</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="gr8 - p1.jpg" alt="DANIEL P4">
+          <div class="card-content">
+            <h3>A trip with my friends to Dong Nai</h3>
+            <p>The most hilarious costume I've ever worn!</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr8 - p2.jpg" alt="DANIEL 5">
+          <div class="card-content">
+            <h3>Ricardo Milos</h3>
+            <p>My second top hilarious costume.</p>
+            <span class="rating">9/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr8 - p3.jpg" alt="DANIEL 6">
+          <div class="card-content">
+            <h3>A farewell party</h3>
+            <p>A small gift from me to friend as she was going abroad.</p>
+            <span class="rating">8.7/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grade 9 -->
+    <section id="drama">
+      <h2 class="animate-on-scroll">GRADE 9</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="gr9 p1.jpg" alt="DANIEL 7">
+          <div class="card-content">
+            <h3>My graduation day</h3>
+            <p>An emotional ride through love, loss, and redemption.</p>
+            <span class="rating">9.2/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr9 - p2.jpg" alt="DANIEL 8">
+          <div class="card-content">
+            <h3>Me with my chemistry teacher</h3>
+            <p>A teacher who I truly respect.</p>
+            <span class="rating">9/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr9 p3.jpg" alt="DANIEL 9">
+          <div class="card-content">
+            <h3>My own "potrait"</h3>
+            <p>Taken while I was hanging out with my comrades.</p>
+            <span class="rating">8.1/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 10 -->
+    <section id="scifi">
+      <h2 class="animate-on-scroll">GRADE 10</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="gr 10 p1.jpg" alt="DANIEL 10">
+          <div class="card-content">
+            <h3>A visit to a nearby museum</h3>
+            <p>I had a lot of wonderful moments!</p>
+            <span class="rating">10/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr 10 p2.jpg" alt="DANIEL 11">
+          <div class="card-content">
+            <h3>First time in Dalat</h3>
+            <p>A unforgettable event, indeed!</p>
+            <span class="rating">10/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr10 p3.jpg" alt="DANIEL 12">
+          <div class="card-content">
+            <h3>My best buddies and me</h3>
+            <p>The last day as 10th graders.</p>
+            <span class="rating">9.8/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 11 -->
+    <section id="horror">
+      <h2 class="animate-on-scroll">GRADE 11</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="gr 11 p1.jpg" alt="DANIEL 13">
+          <div class="card-content">
+            <h3>My second trip to Dalat</h3>
+            <p>A cool photo captured by Thang.</p>
+            <span class="rating">10/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr 11 p2.jpg" alt="DANIEL 14">
+          <div class="card-content">
+            <h3>Ready to serve my country</h3>
+            <p>Taken in a long trip to Ben Tre.</p>
+            <span class="rating">8.6/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr 11 p3.jpg" alt="DANIEL 15">
+          <div class="card-content">
+            <h3>Just a badminton match</h3>
+            <p>I humiliated my friends with a 15-0 win.</p>
+            <span class="rating">8.3/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 12 -->
+    <section id="fantasy">
+      <h2 class="animate-on-scroll">GRADE 12</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="g12 p1.jpg" alt="DANIEL 16">
+          <div class="card-content">
+            <h3>Thang and me</h3>
+            <p>A strong-bonded friendship built since grade 10.</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="g12 p2.jpg" alt="DANIEL 17">
+          <div class="card-content">
+            <h3>Mimicking Huy Can</h3>
+            <p>Probably one of my decent potraits.</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="gr12 p3.jpg" alt="DANIEL 18">
+          <div class="card-content">
+            <h3>The boys and Me - Graduation day</h3>
+            <p>The end of a journey into a world of legends and folklore.</p>
+            <span class="rating">10/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DANIEL IMAGES. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+  
+    onAuthStateChanged(auth, async (user) => {
+      const userBtn = document.getElementById("userBtn");
+      const userDropdown = document.getElementById("userDropdown");
+      if (user) {
+        // Lấy username từ Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        let username = "User";
+        if (docSnap.exists()) {
+          username = docSnap.data().username;
+        }
+        userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
+        // Hiển thị nút Log Out trong dropdown
+        userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      } else {
+        userBtn.innerHTML = 'Log In / Sign Up <i class="fas fa-caret-down"></i>';
+        userDropdown.innerHTML = '<a href="login.html">Log In</a><a href="signup.html">Sign Up</a>';
+      }
+    });
+  </script>
+
+  <!-- Link to external JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
