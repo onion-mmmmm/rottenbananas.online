@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lieu Giai Tran - 24</title>
+  <!-- FontAwesome for icons -->
+  <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="movie review logo.png" alt="Logo" />
+        LieuGiaiTran
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Search titles..." />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="index.html#action">SGK 10</a></li>
+      <li><a href="index.html#comedy">SGK 11</a></li>
+      <li><a href="index.html#drama">SGK 12</a></li>
+      <li><a href="index.html#scifi">SBT 10</a></li>
+      <li><a href="index.html#horror">SGK 11</a></li>
+      <li><a href="index.html#fantasy">SBT 12</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Display -->
+  <header>
+    <div class="hero-content animate-on-scroll">
+      <h1>📚 School Book Library ✨</h1>
+      <p>A gateway to learning, imagination, and growth</p>
+      <button class="cta-btn" onclick="document.querySelector('#action').scrollIntoView()">Explore Now</button>
+    </div>
+  </header>
+
+  <!-- Category Buttons -->
+  <div class="categories-container">
+    <div class="btn"><a href="#action">SGK Lớp 10</a></div>
+    <div class="btn"><a href="#comedy">SGK Lớp 11</a></div>
+    <div class="btn"><a href="#drama">SGK Lớp 12</a></div>
+    <div class="btn"><a href="#scifi">SBT Lớp 10</a></div>
+    <div class="btn"><a href="#horror">SBT Lớp 11</a></div>
+    <div class="btn"><a href="#fantasy">SBT Lớp 12</a></div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget" class="chat-widget closed">
+    <div class="chat-icon">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        Rottenbananas Customer Service
+        <span class="chat-close"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="chat-body">
+        <!-- Các tin nhắn chat sẽ hiển thị tại đây -->
+        <p>Hi, how can I help you today?</p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Nhập tin nhắn..." id="chat-input" />
+        <button class="send-btn" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Categories -->
+  <main>
+    <!-- SGK 10 Section -->
+    <section id="action">
+      <h2 class="animate-on-scroll">SGK Lớp 10</h2>
+      <div class="movie-grid">
+          <div class="card animate-on-scroll">
+            <img src="Ngu-van-10-tap-2-ctst.jpg" alt="Action Movie 1">
+            <div class="card-content">
+              <h3>Ngữ Văn - Tập 2</h3>
+              <p>Chân Trời Sáng Tạo</p>
+              <span class="rating">2022</span>
+            </div>
+          </div>
+        </a>
+        <div class="card animate-on-scroll">
+          <img src="sgk-gdqp-10-kntt.jpg" alt="Action Movie 2">
+          <div class="card-content">
+            <h3>Giáo Dục Quốc Phòng Và An Ninh</h3>
+            <p>Kết Nối Tri Thức</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sgk-amnhac-10-cd.jpg" alt="Action Movie 3">
+          <div class="card-content">
+            <h3>Âm Nhạc</h3>
+            <p>Cánh Diều</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SGK 11 Section -->
+    <section id="comedy">
+      <h2 class="animate-on-scroll">SGK Lớp 11</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="sgk-sinh-ctst.png" alt="Comedy Movie 1">
+          <div class="card-content">
+            <h3>Sinh Học</h3>
+            <p>Chân Trời Sáng Tạo</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sgk-lichsu-lop11-kntt.PNG" alt="Comedy Movie 2">
+          <div class="card-content">
+            <h3>Lịch Sử</h3>
+            <p>Kết Nối Tri Thức</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sgk-vatli-11-cd.png" alt="Comedy Movie 3">
+          <div class="card-content">
+            <h3>Vật Lí</h3>
+            <p>Cánh Diều</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SGK 12 Section -->
+    <section id="drama">
+      <h2 class="animate-on-scroll">SGK Lớp 12</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="sgk-lop-12-ctst.PNG" alt="Drama Movie 1">
+          <div class="card-content">
+            <h3>Toán - Tập 1</h3>
+            <p>Chân Trời Sáng Tạo</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sgk-hoa-12-kntt.png" alt="Drama Movie 2">
+          <div class="card-content">
+            <h3>Hóa Học</h3>
+            <p>Kết Nối Tri Thức</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sgk-lichsu-12.jpg" alt="Drama Movie 3">
+          <div class="card-content">
+            <h3>Lịch Sử</h3>
+            <p>Cánh Diều</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SBT 10 Section -->
+    <section id="scifi">
+      <h2 class="animate-on-scroll">SBT Lớp 10</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="bt-vat-li-10-ctst.webp" alt="Sci-Fi Movie 1">
+          <div class="card-content">
+            <h3>Vật Lí</h3>
+            <p>Chân Trời Sáng Tạo</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sbt-lich-su-10-kntt.webp" alt="Sci-Fi Movie 2">
+          <div class="card-content">
+            <h3>Lịch Sử</h3>
+            <p>Kết Nối Tri Thức</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sbt-nguvan-10-tap2-cd.jpg" alt="Sci-Fi Movie 3">
+          <div class="card-content">
+            <h3>Ngữ Văn - Tập 2</h3>
+            <p>Cánh Diều</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SBT 11 Section -->
+    <section id="horror">
+      <h2 class="animate-on-scroll">SBT Lớp 11</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="sbt-lichsu-11-ctst.png" alt="Horror Movie 1">
+          <div class="card-content">
+            <h3>Lịch Sử</h3>
+            <p>Chân Trời Sáng Tạo</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sbt-toan-11-tap-1-kntt.png" alt="Horror Movie 2">
+          <div class="card-content">
+            <h3>Toán - Tập 1</h3>
+            <p>Kết Nối Tri Thức</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sbt-toan-tap2-cd.jpg" alt="Horror Movie 3">
+          <div class="card-content">
+            <h3>Toán - Tập 2</h3>
+            <p>Cánh Diều</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SBT 12 Section -->
+    <section id="fantasy">
+      <h2 class="animate-on-scroll">SBT Lớp 12</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="sbt-dia-lop-12-ctst.jpg" alt="Fantasy Movie 1">
+          <div class="card-content">
+            <h3>Địa Lí</h3>
+            <p>Chân Trời Sáng Tạo</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sbt-sinh-12-kntt.jpeg" alt="Fantasy Movie 2">
+          <div class="card-content">
+            <h3>Sinh Học</h3>
+            <p>Kết Nối Tri Thức</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="sbt-gdktpl-12-cd.jpeg" alt="Fantasy Movie 3">
+          <div class="card-content">
+            <h3>Giáo Dục Kinh Tế Và Pháp Luật</h3>
+            <p>Cánh Diều</p>
+            <span class="rating">2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 LieuGiaiTran. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+  
+    onAuthStateChanged(auth, async (user) => {
+      const userBtn = document.getElementById("userBtn");
+      const userDropdown = document.getElementById("userDropdown");
+      if (user) {
+        // Lấy username từ Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        let username = "User";
+        if (docSnap.exists()) {
+          username = docSnap.data().username;
+        }
+        userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
+        // Hiển thị nút Log Out trong dropdown
+        userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      } else {
+        userBtn.innerHTML = 'Log In / Sign Up <i class="fas fa-caret-down"></i>';
+        userDropdown.innerHTML = '<a href="login.html">Log In</a><a href="signup.html">Sign Up</a>';
+      }
+    });
+  </script>
+
+  <!-- Link to external JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
