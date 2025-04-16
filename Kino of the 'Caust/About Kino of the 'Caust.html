@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Kino of the 'Caust</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    line-height: 1.6;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+/* Customizable Background Image with Overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--bg-image, url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG0dG8twdG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'));
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.3;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+}
+
+body.scrolling::before {
+    opacity: 0.1;
+}
+
+/* Navbar that stays opaque */
+nav {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}
+
+/* Dual Logo Styles */
+.logo-container {
+    position: relative; /* Change to relative */
+    left: 0; /* Remove absolute positioning offsets */
+    top: 0;
+    height: auto; /* Allow height to adjust based on content */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Push to the left */
+}
+
+.dual-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.review-logo {
+    height: 110px;
+    width: auto;
+    max-width: 110px;
+    min-width: 110px;
+}
+
+.site-logo {
+    height: 65px;
+    width: auto;
+    max-width: none;
+    min-width: 250px;
+}
+
+/* Adjust nav padding to accommodate logos */
+nav {
+    position: relative;
+    padding-top: 10px; /* Adjust top padding */
+    padding-left: 20px; /* Reset left padding */
+}
+
+@media (max-width: 768px) {
+    .logo-container {
+        position: static;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 0 20px;
+    }
+
+    nav {
+        padding-top: 0px;
+        padding-left: 20px;
+    }
+
+    .review-logo {
+        height: 110px;
+    }
+
+    .site-logo {
+        height: 65px;
+    }
+}
+
+.search-bar {
+    margin: 0 20px;
+    display: flex;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px; /* Add some spacing from other elements */
+    margin-top: 60px; /* Push it down below the translation box */
+    position: relative;
+    z-index: 999; /* Keep it below the translation box */
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-end; /* Align to the right */
+}
+
+.user-menu {
+    position: relative;
+    margin-left: auto; /* Corrected: push to the right */
+}
+
+.user-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+}
+
+.dropdown a {
+    color: white;
+    padding: 5px 0;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 0;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+
+.user-menu:hover .dropdown {
+    display: block;
+}
+
+.language-selector i {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.container.scrolling {
+    background-color: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+/* Quote sections */
+.quote-section {
+    margin: 30px 0;
+    padding: 30px;
+    background-color: rgba(255, 193, 7, 0.9);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.quote-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.quote-image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 3px solid #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.quote-image-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.quote-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.quote-image:hover {
+    transform: scale(1.1);
+}
+
+.quote-content {
+    flex: 1;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.author {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333;
+}
+
+.about-section {
+    margin: 40px 0;
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.about-section:hover {
+    background-color: rgba(40, 40, 40, 0.9);
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+}
+
+.about-item {
+    margin-bottom: 25px;
+}
+
+.about-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.about-item p {
+    margin-bottom: 5px;
+    color: #bbb;
+    font-size: 16px;
+}
+
+.internal-link {
+    color: #FF0000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.internal-link:hover {
+    color: #ff5252;
+    text-decoration: underline;
+}
+
+.external-link {
+    color: #0000FF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.external-link:hover {
+    color: #5252ff;
+    text-decoration: underline;
+}
+
+.roles-section, .upgrades-section {
+    margin: 40px 0;
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.roles-section:hover, .upgrades-section:hover {
+    background-color: rgba(40, 40, 40, 0.9);
+}
+
+.roles-list, .upgrades-list {
+    list-style-type: none;
+    color: #bbb;
+}
+
+.roles-list li, .upgrades-list li {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 16px;
+}
+
+.roles-list li:before, .upgrades-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #FFC107;
+    font-size: 20px;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    background-color: rgba(76, 175, 80, 0.9);
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    backdrop-filter: blur(5px);
+}
+
+/* Background selection controls */
+.bg-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-btn {
+    margin: 5px;
+    padding: 5px 10px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bg-btn:hover {
+    background: #555;
+}
+
+.translate-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.translate-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+.keep-going-container {
+    text-align: center; /* Center the button */
+    margin-top: 30px; /* Add some space above the button */
+    margin-bottom: 30px; /* Add some space below the button */
+}
+
+.keep-going-button {
+    background-color: #FFC107; /* Yellow background */
+    color: #1a1a1a; /* Dark text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from link */
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.keep-going-button:hover {
+    background-color: #FFD54F; /* Slightly lighter yellow on hover */
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <a href="Kino of the 'Caust.html" class="dual-logo-link">
+                <img src="images/movie-review-logo.png" alt="Movie Review Logo" class="review-logo" />
+                <img src="images/Web name.png" alt="." class="site-logo" />
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="translate-section">
+                <img src="images/language-icon.png" alt="Language" class="translate-icon">
+                <select class="language-select" id="languageSelect" onchange="translatePage(this.value)">
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </div>
+            <div class="logo-container">
+            </div>
+            
+            <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+            <div class="dropdown" id="userDropdown">
+                <a href="login.html">Log In</a>
+                <a href="sign up.html">Sign Up</a>
+            </div>
+    
+    </div>
+</div>
+</nav>
+
+    <div class="container" id="mainContainer">
+        <div class="quote-section">
+            <div class="quote-image-container">
+                <img src="images/Ho Chi Minh.png" alt="Ho Chi Minh" class="quote-image">
+            </div>
+            
+            <div class="quote-content">
+                <p class="quote">"Nothing is more precious than independence and freedom"</p>
+                <p class="author">— <a href="https://en.wikipedia.org/wiki/Ho_Chi_Minh" class="external-link">[Hồ Chí Minh]</a></p>
+            </div>
+        </div>
+        
+        <div class="quote-section">
+            <div class="quote-content">
+                <p class="quote">"In the end, we will remember not the words of our enemies, but the silence of our friends."</p>
+                <p class="author">— <a href="https://en.wikipedia.org/wiki/Martin_Luther_King_Jr." class="external-link">[Martin Luther King Jr]</a></p>
+            </div>
+            
+            <div class="quote-image-container">
+                <img src="images/Martin Luther King.png" alt="Martin Luther King Jr." class="quote-image">
+            </div>
+        </div>
+    
+        <div class="about-section">
+            <h2 class="section-title">About the Web</h2>
+            <div class="about-item">
+                <h3>Origins</h3>
+                <p>The day when everything has begun: 27/3/2025</p>
+            </div>
+            <div class="about-item">
+                <h3>Founder</h3>
+                <p>The Archivist <a href="The Archivist.html" class="internal-link">[See The Archivist]</a></p>
+            </div>
+            <div class="about-item">
+                <h3>Mission</h3>
+                <p>Return to <a href="Letter from the host.html" class="internal-link">[Letter from the host]</a></p>
+            </div>
+        </div>
+        
+        <div class="roles-section">
+            <h2 class="section-title">Our rules</h2>
+            <ul class="roles-list">
+                <li>Provide innovations with authentic proof (statistics, images, source limit...)</li>
+                <li>Treat each other with kind and respect. We embrace equality and comparison.</li>
+                <li>Apply comments promoting extreme ideologies will be deleted, and their accounts may get penalized.</li>
+            </ul>
+        </div>
+        
+        <div class="upgrades-section">
+            <h2 class="section-title">Future upgrades</h2>
+            <ul class="upgrades-list">
+                <li>Watch more and "Arts" section in Movie Categories</li>
+                <li>Historical background for each movies</li>
+                <li>Chat box (AI chat and human chat)</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>© 2025 Kino of the 'Caust. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="About translator.js"></script>
+
+    <div class="bg-controls">
+        <button class="bg-btn" onclick="changeBackground('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">Cinema</button>
+        <button class="bg-btn" onclick="changeBackground('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80')">Space</button>
+        <button class="bg-btn" onclick="changeBackground('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2093&q=80')">Earth</button>
+    </div>
+    <div class="keep-going-container">
+        <a href="Movie categories.html" class="keep-going-button">
+            Keep going --> 
+        </a>
+    </div>
+
+    <script>
+        // Dropdown functionality
+        document.getElementById('userBtn').addEventListener('click', function() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('userMenu');
+            if (!userMenu.contains(event.target)) {
+                document.getElementById('userDropdown').style.display = 'none';
+            }
+        });
+
+        // Scroll effect for transparency
+        let isScrolling;
+        window.addEventListener('scroll', function() {
+            document.body.classList.add('scrolling');
+            document.getElementById('mainContainer').classList.add('scrolling');
+            
+            clearTimeout(isScrolling);
+            isScrolling = setTimeout(function() {
+                document.body.classList.remove('scrolling');
+                document.getElementById('mainContainer').classList.remove('scrolling');
+            }, 100);
+        }, false);
+
+        // Background changer function
+        function changeBackground(imageUrl) {
+            document.documentElement.style.setProperty('--bg-image', `url('${imageUrl}')`);
+        }
+
+        // Image click effect
+        document.querySelectorAll('.quote-image-container').forEach(container => {
+            container.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('quote-image')) return;
+                e.preventDefault();
+                const imgSrc = this.getAttribute('href');
+                const imgPreview = document.createElement('div');
+                imgPreview.style.position = 'fixed';
+                imgPreview.style.top = '0';
+                imgPreview.style.left = '0';
+                imgPreview.style.width = '100%';
+                imgPreview.style.height = '100%';
+                imgPreview.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                imgPreview.style.display = 'flex';
+                imgPreview.style.justifyContent = 'center';
+                imgPreview.style.alignItems = 'center';
+                imgPreview.style.zIndex = '1000';
+                imgPreview.style.cursor = 'zoom-out';
+                
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.style.maxWidth = '90%';
+                img.style.maxHeight = '90%';
+                img.style.objectFit = 'contain';
+                img.style.boxShadow = '0 0 20px rgba(255,255,255,0.2)';
+                
+                imgPreview.appendChild(img);
+                document.body.appendChild(imgPreview);
+                
+                imgPreview.addEventListener('click', function() {
+                    document.body.removeChild(imgPreview);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

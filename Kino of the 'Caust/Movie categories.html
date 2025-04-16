@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWII War Victims Memorial - Movie Categories</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-image: url('images/letter background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            scroll-behavior: smooth;
+            padding-top: 70px; /* Match navbar height */
+            color: #fff;
+            position: relative;
+        }
+
+        /* Background Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay to match the screenshot */
+            z-index: -1;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-bar {
+            margin: 10px auto; /* Center the search bar */
+            flex-grow: 1; /* Allow it to grow and take center space */
+            max-width: 400px; /* Adjust max width as needed */
+            display: flex;
+            position: relative;
+        }
+        .search-bar input {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            flex-grow: 1;
+        }
+        .search-bar button {
+            padding: 8px 15px;
+            background-color: #0ff169;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin-left: 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .faction-flag {
+            width: 20px;
+            height: auto;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .logo {
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            nav ul {
+                justify-content: center;
+                margin-top: 10px;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+        }
+
+        /* Dual Logo Styles */
+        .logo-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            height: 50px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            order: -1;
+        }
+
+        .dual-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between logos */
+            text-decoration: none;
+        }
+
+        .review-logo {
+            height: 125px; /* Adjust to match your design */
+            width: auto;
+            max-width: none;
+            min-width: 125px;
+        }
+
+        .site-logo {
+            height: 50px; /* Slightly smaller than review logo */
+            width: auto;
+            max-width: none;
+            min-width: 250px;
+        }
+
+        /* Adjust nav padding to accommodate logos */
+        nav {
+            position: relative;
+            padding-top: 70px;
+            padding-left: 240px; /* Adjust based on combined logo width */
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                position: static;
+                justify-content: center;
+                width: 100%;
+                margin-bottom: 15px;
+                padding: 0 20px;
+            }
+            nav {
+                padding-top: 20px;
+                padding-left: 20px;
+            }
+            .review-logo {
+                height: 50px;
+            }
+            .site-logo {
+                height: 40px;
+            }
+        }
+
+        /* Hover effect for navbar links */
+        nav ul li a:hover {
+            color: #FF0000; /* Red on hover */
+        }
+
+        .faction-flag {
+            width: 20px;
+            height: 20px;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Hover effect for user button */
+        .user-btn:hover {
+            color: #FF0000; /* Red on hover */
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #333;
+            border-radius: 4px;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .dropdown a, .dropdown button {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Hover effect for dropdown links */
+        .dropdown a:hover, .dropdown button:hover {
+            color: #FF0000; /* Red on hover */
+            background-color: #444;
+        }
+
+        .user-menu:hover .dropdown {
+            display: block;
+        }
+
+        .language-selector {
+            color: #fff;
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 20px;
+            scroll-margin-top: 70px;
+        }
+
+        section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .movie-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        section:not(:first-child) {
+            margin-top: 40px;
+        }
+
+        /* Ensure proper spacing when navbar is hidden */
+        html {
+            scroll-padding-top: 70px;
+        }
+
+        /* Card Styling */
+        .card {
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: height 0.3s ease;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .card-content p {
+            margin: 0 0 10px;
+            color: #666;
+        }
+
+        .card-content .rating {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #0ff169;
+            color: rgba(0, 0, 0, 0.75);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Enlarged state for selected card */
+        .card.enlarged {
+            width: 525px; /* 75% larger than default 300px */
+            z-index: 1;
+        }
+
+        .card.enlarged img {
+            height: 787.5px; /* 75% larger than default 450px */
+        }
+
+        /* Fallback for animate-on-scroll */
+        .animate-on-scroll {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            background-color: #4CAF50;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+        }
+        .translate-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .translate-icon {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+        /* Styling for the suggestion list to be horizontal */
+        #search-suggestions {
+            font-size: 0.9em;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: calc(100% + 2px);
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
+            display: none;
+            display: flex; /* Make suggestions horizontal */
+            flex-direction: row; /* Arrange in a row */
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+        #search-suggestions li {
+            padding: 8px 12px;
+            border-right: 1px solid #eee; /* Add dividers between items */
+            cursor: pointer;
+            color: #333;
+        }
+
+        #search-suggestions li:last-child {
+            border-right: none;
+        }
+
+        #search-suggestions li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="logo-container">
+            <a href="Kino of the 'Caust.html" class="dual-logo-link">
+                <img src="images/movie-review-logo.png" alt="Movie Review Logo" class="review-logo" />
+                <img src="images/Web name.png" alt="." class="site-logo" />
+            </a>
+        </div>
+        <div class="translate-section">
+            <img src="images/language-icon.png" alt="Language" class="translate-icon">
+            <select class="language-select" id="languageSelect" onchange="translatePage(this.value)">
+                <option value="en">English</option>
+                <option value="vi">Tiếng Việt</option>
+            </select>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="nav-search-input" placeholder="Search movies..." oninput="updateSearchSuggestions(this.value)" />
+            <button id="nav-search-btn">Search</button>
+            <ul id="search-suggestions"></ul>
+        </div>
+        <ul>
+            <li><a href="Letter from the host.html" class="faction-link">Letter from the host</a></li>
+            <li>
+                <a href="#Nazi-Germany" class="faction-link">
+                    <span class="nav-title">Nazi Germany</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Flag_of_Germany_%281935%E2%80%931945%29.svg/1920px-Flag_of_Germany_%281935%E2%80%931945%29.svg.png" alt="Nazi Germany Flag" class="faction-flag" />
+                </a>
+            </li>
+            <li>
+                <a href="#Empire-of-Japan" class="faction-link">
+                    <span class="nav-title">Empire of Japan</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Naval_Ensign_of_Japan.svg/1280px-Naval_Ensign_of_Japan.svg.png" alt="Empire of Japan Flag" class="faction-flag" />
+                </a>
+            </li>
+            <li>
+                <a href="#Fascist-Italy" class="faction-link">
+                    <span class="nav-title">Fascist Italy</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Italy_%281861-1946%29.svg" alt="Fascist Italy Flag" class="faction-flag" />
+                </a>
+            </li>
+            <li>
+                <a href="#Allied-Faction" class="faction-link">
+                    <span class="nav-title">Allied Factions</span>
+                    <img src="images/victory-medal.png" alt="Allied Factions Victory Medal" class="faction-flag" />
+                </a>
+            </li>
+            <li class="user-menu" id="userMenu">
+                <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+                <div class="dropdown" id="userDropdown">
+                    <a href="login.html">Log In</a>
+                    <a href="sign up.html">Sign Up</a>
+                </div>
+            </li>
+            <li class="language-selector">
+                <i class="fas fa-globe"></i>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="Nazi-Germany">
+            <h2 class="animate-on-scroll">Nazi Germany</h2>
+            <div class="movie-grid">
+                <div class="card-link" data-movie-title="Schindler's List">
+                    <div class="card animate-on-scroll">
+                        <img src="images/Schindler's List.png" alt="Schindler's List">
+                        <div class="card-<div class="card-content">
+                            <h3>Schindler's List (1993)</h3>
+                            <p>Heroic efforts of a businessman to keep the fire of conscience burning.</p>
+                            <span class="rating">9.3/10</span>
+                        </div></div>
+                </div>
+                <div class="card-link" data-movie-title="The Pianist">
+                    <div class="card animate-on-scroll">
+                        <img src="images/the pianist.png" alt="The Pianist">
+                        <div class="card-content">
+                            <h3>The Pianist (2002)</h3>
+                            <p>The will to live of an ordinary man in cruel fate.</p>
+                            <span class="rating">9.4/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="Downfall">
+                    <div class="card animate-on-scroll">
+                        <img src="images/downfall.png" alt="Downfall">
+                        <div class="card-content">
+                            <h3>Downfall (2004)</h3>
+                            <p>The last days of the painter who recreated the European map.</p>
+                            <span class="rating">8.3/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="Empire-of-Japan">
+            <h2 class="animate-on-scroll">Empire of Japan</h2>
+            <div class="movie-grid">
+                <div class="card-link" data-movie-title="Men Behind the BlackSun">
+                    <div class="card animate-on-scroll">
+                        <img src="images/men behind the black sun.png" alt="Men Behind the Black Sun">
+                        <div class="card-content">
+                            <h3>Men Behind the BlackSun (1988)</h3>
+                            <p>Gruesome depiction of Unit 731's experiments.</p>
+                            <span class="rating">7.6/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="The City of Life and Death">
+                    <div class="card animate-on-scroll">
+                        <img src="images/the city of life and death.png" alt="The City of Life and Death">
+                        <div class="card-content">
+                            <h3>The City of Life and Death (2009)</h3>
+                            <p>A harrowing illustration of the Nanking Massacre.</p>
+                            <span class="rating">7.9/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="Vợ Nhặt">
+                    <div class="card animate-on-scroll">
+                        <img src="images/vo nhat.png" alt="Vợ Nhặt">
+                        <div class="card-content">
+                            <h3>Vợ Nhặt (2023)</h3>
+                            <p>A piece of lost sketch talking about tragic fates in the Great Famine of Vietnam in 1945, adapted from the same name novel (1962)</p>
+                            <span class="rating">8.9/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="Fascist-Italy">
+            <h2 class="animate-on-scroll">Fascist Italy</h2>
+            <div class="movie-grid">
+                <div class="card-link" data-movie-title="Life is Beautiful">
+                    <div class="card animate-on-scroll">
+                        <img src="images/life is beautiful.png" alt="Life is Beautiful">
+                        <div class="card-content">
+                            <h3>Life is Beautiful (1997)</h3>
+                            <p>The greatest white lie of fatherhood.</p>
+                            <span class="rating">8.9/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="Rome, Open City">
+                    <div class="card animate-on-scroll">
+                        <img src="images/rome open city.png" alt="Rome, Open City">
+                        <div class="card-content">
+                            <h3>Rome, Open City (1945)</h3>
+                            <p>The hunt for the Resistance, the salvation from the Church.</p>
+                            <span class="rating">8.1/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="The Garden of the Finzi-Continis">
+                    <div class="card animate-on-scroll">
+                        <img src="images/the garden.png" alt="The Garden of the Finzi-Continis">
+                        <div class="card-content">
+                            <h3>The Garden of the Finzi-Continis (1970)</h3>
+                            <p>Even the wealth couldn't save the tragic fates.</p>
+                            <span class="rating">7.8/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="Allied-Faction">
+            <h2 class="animate-on-scroll">Allied Faction</h2>
+            <div class="movie-grid">
+                <div class="card-link" data-movie-title="Hiroshima">
+                    <div class="card animate-on-scroll">
+                        <img src="images/hiroshima.png" alt="Hiroshima">
+                        <div class="card-content">
+                            <h3>Hiroshima (1953)</h3>
+                            <p>The day that the bomb dropped and changed the world.</p>
+                            <span class="rating">7.3/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="Grave of the Fireflies">
+                    <div class="card animate-on-scroll">
+                        <img src="images/grave.png" alt="Grave of the Fireflies">
+                        <div class="card-content">
+                            <h3>Grave of the Fireflies (1988)</h3>
+                            <p>The devastating human cost of war, under the children's perspective.</p>
+                            <span class="rating">9.1/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link" data-movie-title="Letters from Iwo Jima">
+                    <div class="card animate-on-scroll">
+                        <img src="images/letters from.png" alt="Letters from Iwo Jima">
+                        <div class="card-content">
+                            <h3>Letters from Iwo Jima (2006)</h3>
+                            <p>Perspectives from the conscripts of the Empire of the Rising Sun.</p>
+                            <span class="rating">8.1/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Kino of the 'Caust. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const movieData = [
+            { title: "Schindler's List", link: "https://en.wikipedia.org/wiki/Schindler%27s_List", sectionId: "Nazi-Germany" },
+            { title: "The Pianist", link: "https://en.wikipedia.org/wiki/The_Pianist_(2002_film)", sectionId: "Nazi-Germany" },
+            { title: "Downfall", link: "https://en.wikipedia.org/wiki/Downfall_(2004_film)", sectionId: "Nazi-Germany" },
+            { title: "Men Behind the BlackSun", link: "https://en.wikipedia.org/wiki/Men_Behind_the_Sun", sectionId: "Empire-of-Japan" },
+            { title: "The City of Life and Death", link: "https://en.wikipedia.org/wiki/City_of_Life_and_Death", sectionId: "Empire-of-Japan" },
+            { title: "Vợ Nhặt", link: "https://vi.wikipedia.org/wiki/V%E1%BB%A3_nh%E1%BA%B7t", sectionId: "Empire-of-Japan" },
+            { title: "Life is Beautiful", link: "https://en.wikipedia.org/wiki/Life_Is_Beautiful", sectionId: "Fascist-Italy" },
+            { title: "Rome, Open City", link: "https://en.wikipedia.org/wiki/Rome,_Open_City", sectionId: "Fascist-Italy" },
+            { title: "The Garden of the Finzi-Continis", link: "https://en.wikipedia.org/wiki/The_Garden_of_the_Finzi-Continis_(film)", sectionId: "Fascist-Italy" },
+            { title: "Hiroshima", link: "https://en.wikipedia.org/wiki/Hiroshima_(1953_film)", sectionId: "Allied-Faction" },
+            { title: "Grave of the Fireflies", link: "https://en.wikipedia.org/wiki/Grave_of_the_Fireflies", sectionId: "Allied-Faction" },
+            { title: "Letters from Iwo Jima", link: "https://en.wikipedia.org/wiki/Letters_from_Iwo_Jima", sectionId: "Allied-Faction" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('nav-search-input');
+            const searchButton = document.getElementById('nav-search-btn');
+            const searchSuggestions = document.getElementById('search-suggestions');
+            const movieCardLinks = document.querySelectorAll('.card-link');
+            const allCards = document.querySelectorAll('.card');
+
+            function resetCardSizes() {
+                allCards.forEach(card => {
+                    card.classList.remove('enlarged');
+                });
+            }
+
+            function updateSearchSuggestions(inputText) {
+                const searchTerm = inputText.toLowerCase().trim();
+                searchSuggestions.innerHTML = '';
+                searchSuggestions.style.display = 'none';
+
+                if (searchTerm.length > 0) {
+                    const suggestions = movieData.filter(movie =>
+                        movie.title.toLowerCase().includes(searchTerm)
+                    );
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(movie => {
+                            const suggestionItem = document.createElement('li');
+                            suggestionItem.style.padding = '8px 12px';
+                            suggestionItem.style.cursor = 'pointer';
+                            suggestionItem.style.backgroundColor = '#fff';
+                            suggestionItem.style.color = '#333';
+                            suggestionItem.style.borderRight = '1px solid #eee'; // Use border-right for horizontal dividers
+
+                            const matchStart = movie.title.toLowerCase().indexOf(searchTerm);
+                            const beforeMatch = movie.title.substring(0, matchStart);
+                            const matchText = movie.title.substring(matchStart, matchStart + searchTerm.length);
+                            const afterMatch = movie.title.substring(matchStart + searchTerm.length);
+                            suggestionItem.innerHTML = `${beforeMatch}<strong>${matchText}</strong>${afterMatch}`;
+
+                            suggestionItem.addEventListener('mouseover', () => {
+                                suggestionItem.style.backgroundColor = '#f0f0f0';
+                            });
+                            suggestionItem.addEventListener('mouseout', () => {
+                                suggestionItem.style.backgroundColor = '#fff';
+                            });
+
+                            suggestionItem.addEventListener('click', () => {
+                                searchInput.value = movie.title;
+                                searchSuggestions.style.display = 'none';
+                                highlightAndEnlargeMovie(movie.title);
+                            });
+
+                            searchSuggestions.appendChild(suggestionItem);
+                        });
+                        searchSuggestions.style.display = 'flex'; // Display as flex to be horizontal
+                    }
+                }
+            }
+
+            function highlightAndEnlargeMovie(movieTitle) {
+                resetCardSizes();
+                let foundAndScrolled = false;
+                movieCardLinks.forEach(cardLink => {
+                    const titleElement = cardLink.querySelector('.card-content h3');
+                    if (titleElement && titleElement.textContent.toLowerCase().includes(movieTitle.toLowerCase())) {
+                        const cardElement = cardLink.querySelector('.card');
+                        cardElement.classList.add('enlarged');
+                        if (!foundAndScrolled) {
+                            cardLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            foundAndScrolled = true;
+                        }
+                    }
+                });
+            }
+
+            function performSearch() {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    highlightAndEnlargeMovie(searchTerm);
+                    searchSuggestions.style.display = 'none';
+                }
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    updateSearchSuggestions(this.value);
+                });
+
+                searchInput.addEventListener('focus', function() {
+                    if (this.value) {
+                        updateSearchSuggestions(this.value);
+                    }
+                });
+
+                searchInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+
+            if (searchButton) {
+                searchButton.addEventListener('click', performSearch);
+            }
+
+            document.addEventListener('click', function(event) {
+                if (searchSuggestions && searchInput &&
+                    !searchInput.contains(event.target) &&
+                    !searchSuggestions.contains(event.target)) {
+                    searchSuggestions.style.display = 'none';
+                }
+                // Keep card enlarged if it's already enlarged
+                if (!event.target.closest('.card.enlarged')) {
+                    resetCardSizes();
+                }
+            });
+
+            movieCardLinks.forEach(cardLink => {
+                cardLink.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent immediate reset by document click
+                    resetCardSizes();
+                    const cardElement = this.querySelector('.card');
+                    cardElement.classList.add('enlarged');
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
+
+            window.addEventListener('focus', function() {
+                if (window.location.pathname !== '/Movie%20categories.html' &&
+                    !window.location.pathname.includes('Movie%20categories.html')) {
+                    window.location.href = 'Movie categories.html';
+                }
+            });
+        });
+
+        function translatePage(lang) {
+            console.log(`Translating to ${lang}`);
+            // Add your translation logic here
+        }
+    </script>
+    <script src="Cat translator.js"></script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWII War Victims Memorial - Best Movies and Arts</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .hidden { display: none; }
+        .container { text-align: center; padding: 50px; }
+        .button, .cta-btn { padding: 15px 30px; background-color: #0ff169; color: rgba(0, 0, 0, 0.584); text-align: center; border-radius: 5px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; }
+        .button:hover, .cta-btn:hover { background-color: hsl(92, 88%, 44%); }
+        header {
+            background-image: url('images/2520.avif');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        nav {
+            background-color: #000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-bar {
+            margin: 0 15px;
+            flex-grow: 1;
+            max-width: 300px;
+            display: flex;
+        }
+        .search-bar input {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            flex-grow: 1;
+        }
+        .search-bar button {
+            padding: 8px 15px;
+            background-color: #0ff169;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        nav {
+            display: flex;
+            align-items: center; /* Vertical centering */
+            position: relative;
+            padding: 15px 0; /* Added vertical padding */
+          }
+
+          nav ul {
+            display: flex;
+            gap: 30px; /* Increased spacing between items (was 15px) */
+            margin: 0 auto; /* Horizontal centering */
+            padding: 0;
+            align-items: center; /* Vertical centering for items */
+            height: 100%; /* Takes full navbar height */
+          }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .logo {
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            nav ul {
+                justify-content: center;
+                margin-top: 10px;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+        }
+
+        /* Dual Logo Styles */
+            .logo-container {
+                position: absolute;
+                left: 20px;
+                top: 20px;
+                height: 50px;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+            }
+
+            .dual-logo-link {
+                display: flex;
+                align-items: center;
+                gap: 10px; /* Space between logos */
+                text-decoration: none;
+            }
+
+            .review-logo {
+                height: 110px; /* Adjust to match your design */
+                width: auto;
+                max-width: 110px;
+                min-width: 110px;
+            }
+
+            .site-logo {
+                height: 65px; /* Slightly smaller than review logo */
+                width: auto;
+                max-width: none;
+                min-width: 250px;
+            }
+
+/* Adjust nav padding to accommodate logos */
+            nav {
+                position: relative;
+                padding-top: 70px;
+                padding-right: -240px; /* Adjust based on combined logo width */
+            }
+
+            @media (max-width: 768px) {
+                .logo-container {
+                    position: static;
+                    justify-content: center;
+                    width: 100%;
+                    margin-bottom: 15px;
+                    padding: 0 20px;
+                }
+                nav {
+                    padding-top: 20px;
+                    padding-right: 20px;
+                }
+                .review-logo {
+                    height: 50px;
+                }
+                .site-logo {
+                    height: 40px;
+                }
+            }
+            .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .translate-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .translate-icon {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+        
+        .language-select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: white;
+            font-family: 'Courier New', monospace;
+        }
+        
+        
+
+            
+    </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <!-- Logo in top left corner -->
+    <div class="logo-container">
+      <a href="Kino of the 'Caust.html" class="dual-logo-link">
+        <img src="images/movie-review-logo.png" alt="Movie Review Logo" class="review-logo" />
+        <img src="images/Web name.png" alt="About Kino of the 'Caust.html" class="site-logo" />
+      </a>
+    </div>
+    
+    
+    <ul>
+      <li><a href="Letter from the host.html">Letter from the host</a></li>
+      <li>
+        <a href="Movie categories.html">Movies</a>
+      
+      
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+            <a href="login.html">Log In</a>
+            <a href="sign up.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+      <div class="translate-section">
+        <img src="images/language-icon.png" alt="Language" class="translate-icon">
+        <select class="language-select" id="languageSelect" onchange="translatePage(this.value)">
+            <option value="en">English</option>
+            <option value="vi">Tiếng Việt</option>
+        </select>
+    </ul>
+      
+    
+
+  </nav>
+
+  <!-- Rest of your HTML remains exactly the same -->
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-content animate-on-scroll">
+      <h1>WWII War Victims Memorial-Best movies info </h1>
+      <p>Dark side of humanity - Bright side of empathy - Reject extreme idealogy - Embrace equality</p>
+      <a href="Letter from the host.html" class="cta-btn">Explore Now</a>
+    </div>
+  </header>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget" class="chat-widget closed">
+    <div class="chat-icon">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        Kino of the Caust Customer Service
+        <span class="chat-close"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="chat-body">
+        <!-- Các tin nhắn chat sẽ hiển thị tại đây -->
+        <p>Hi, how can I help you today?</p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Nhập tin nhắn..." id="chat-input" />
+        <button class="send-btn" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-container">
+      <!-- All your movie content goes here -->
+    </div>
+
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Kino of the 'Caust. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+  
+    onAuthStateChanged(auth, async (user) => {
+      const userBtn = document.getElementById("userBtn");
+      const userDropdown = document.getElementById("userDropdown");
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        let username = "User";
+        if (docSnap.exists()) {
+          username = docSnap.data().username;
+        }
+        userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
+        userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      } else {
+        userBtn.innerHTML = 'Log In / Sign Up <i class="fas fa-caret-down"></i>';
+        userDropdown.innerHTML = '<a href="login.html">Log In</a><a href="sign up.html">Sign Up</a>';
+      }
+    });
+  </script>
+
+  <script src="script.js"></script>
+  <script src="Menu translator.js"></script>
+</body>
+</html>

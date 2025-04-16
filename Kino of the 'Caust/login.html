@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kino of the 'Caust - Log In</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-image: url('images/login background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #fff;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Background Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        
+        /* Login form with transparency effect */
+        .login-container {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* Start semi-transparent */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        .login-container:hover {
+            background-color: rgba(255, 255, 255, 0.9); /* Opaque on hover */
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .login-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #555;
+        }
+        
+        .login-container a {
+            color: #4CAF50;
+            transition: color 0.3s ease;
+        }
+
+        .login-container a:hover {
+            color: #3e8e41;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            color: #666;
+        }
+
+/* Dual Logo Styles */
+    .logo-container {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        height: 50px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+    }
+
+    .dual-logo-link {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Space between logos */
+        text-decoration: none;
+    }
+
+    .review-logo {
+        height: 80px; /* Adjust to match your design */
+        width: auto;
+        max-width: none;
+        min-width: 80px;
+    }
+
+    .site-logo {
+        height: 65px; /* Slightly smaller than review logo */
+        width: auto;
+        max-width: none;
+        min-width: 250px;
+    }
+
+/* Adjust nav padding to accommodate logos */
+    nav {
+        position: relative;
+        padding-top: 70px;
+        padding-left: 240px; /* Adjust based on combined logo width */
+    }
+
+    @media (max-width: 768px) {
+        .logo-container {
+            position: static;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 0 20px;
+        }
+        nav {
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        .review-logo {
+            height: 50px;
+        }
+        .site-logo {
+            height: 40px;
+        }
+    }
+
+
+
+
+
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kino of the 'Caust</h1>
+        </header>
+        
+        <!-- Login Form with transparency effect -->
+        <div class="login-container">
+            <h2>Log In</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="password" id="password" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+                
+                <button type="submit">Log In</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px; color: #333;">Forgot password? <a href="#">Click here</a></p>
+        </div>
+        
+        <footer>
+            <p>© 2025 Kino of the 'Caust. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Form submission handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your login logic here
+            alert('Login functionality would be implemented here');
+        });
+    </script>
+</body>
+</html>

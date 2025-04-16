@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter from the Host - WWII War Victims Memorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        #google_translate_element {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+        }
+        
+        body {
+            background-image: url('images/nanking.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            height: fit-content;
+        }
+        .letter-content {
+            background-image: url('images/letter.png');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 60px 50px;
+            max-width: 850px;
+            margin: 20px auto;
+            line-height: 1.8;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            font-family: 'Times New Roman', serif;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+            min-height: 850px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .instructions-panel {
+            background-color: #333;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin: 30px auto;
+            max-width: 700px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .instructions-panel h2 {
+            color: #f8f8f8;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .instructions-panel ul {
+            text-align: left;
+            margin: 20px auto;
+            padding-left: 30px;
+        }
+        .instructions-panel li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .button {
+            padding: 15px 40px;
+            background-color: #0ff169;
+            color: rgba(0, 0, 0, 0.75);
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: hsl(92, 88%, 44%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .letter-title {
+            font-family: 'Georgia', serif;
+            color: #2c2c2c;
+            margin-bottom: 30px;
+        }
+        .site-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+        .script-font {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 1.8em;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+            padding-bottom: 1em;
+            text-shadow: none;
+            font-weight: bold;
+            color: #000000;
+        }
+        .script-font a:not(.highlight-underline):not([class*="highlight-"]) {
+            font-weight: bold;
+            color: #000000;
+        }
+        .highlight-text {
+            font-weight: 600;
+            color: #b27822;
+            text-decoration: bold;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #b22222;
+            text-underline-offset: 3px;
+        }
+        .wiki-link {
+            color: #0645ad;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        .wiki-link:hover {
+            color: #3366bb;
+            text-decoration: none;
+        }
+        .signature-line {
+            text-align: left;
+            margin-top: 30px;
+            position: relative;
+        }
+        .curator-signature-container {
+            display: block;
+            position: relative;
+            width: 100%;
+        }
+        .personal-signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.0em;
+            color: #333;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .highlight-red {
+            font-weight: 600;
+            color: #b22222;
+            font-size: 1em;
+        }
+        .highlight-purple {
+            font-weight: 600;
+            color: #800080;
+        }
+        .highlight-pink {
+            font-weight: 600;
+            color: #FF69B4;
+        }
+        .highlight-green {
+            font-weight: 600;
+            color: #006400;
+        }
+        .highlight-orange {
+            font-weight: 600;
+            color: #FF8C00;
+        }
+        .highlight-blue {
+            font-weight: 600;
+            color: #0000CD;
+        }
+        .highlight-violet {
+            font-weight: 600;
+            color: #8A2BE2;
+        }
+        .highlight-grey {
+            font-weight: 600;
+            color: #696969;
+        }
+        .highlight-yellow {
+            font-weight: 600;
+            color: #B8860B;
+        }
+        .highlight-white {
+            font-weight: 600;
+            color: #f4e0c2;
+        }
+        .highlight-bold-black {
+            font-weight: 800;
+            color: #000000;
+        }
+        .highlight-underline {
+            font-weight: 600;
+            color: #b22222;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #b22222;
+            text-underline-offset: 3px;
+        }
+        .highlight-cyan {
+            font-weight: 600;
+            color: #00CCCC;
+        }
+        .letter-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: inset 0 0 20px 5px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+        .archivist-link {
+            font-size: 2em;
+            font-weight: 700;
+            color: #b22222;
+            text-decoration: underline;
+            font-family: 'Great Vibes', cursive;
+            transition: color 0.3s ease;
+            position: absolute;
+            right: 10px;
+            top: -100px;
+        }
+        .kino-link {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #b22222;
+        }
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+        .external-link {
+            font-size: 0.9em;
+            color: #b22222;
+        }
+        .internal-link {
+            font-size: 0.8em;
+            color: #b22222;
+        }
+        .internal-link-bracket, .external-link-bracket {
+            font-size: 0.8em;
+            color: inherit;
+        }
+        .search-bar input {
+            background-color: transparent;
+            border: 1px solid #ccc;
+            color: #000;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .search-bar input:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        nav {
+            background-color: #000;
+            padding: 10px 20px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .logo-container {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        .dual-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .review-logo {
+            height: 110px;
+            width: auto;
+        }
+        .site-logo {
+            height: 65px;
+            width: auto;
+        }
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the nav items */
+            list-style: none;
+            margin: 0 auto; /* Center the nav horizontally */
+            padding: 0;
+            width: auto; /* Adjust width to fit content */
+            gap: 50px; /* Reduced space between items */
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav ul li a:hover {
+            color: #b22222;
+        }
+        .translate-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+            .logo-container {
+                position: static;
+                justify-content: center;
+                width: 100%;
+                transform: none;
+                margin-bottom: 10px;
+                padding: 0 10px;
+            }
+            nav {
+                min-height: 80px;
+                padding: 10px;
+                flex-direction: column;
+            }
+            .review-logo {
+                height: 50px;
+            }
+            .site-logo {
+                height: 40px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                margin: 10px 0;
+                gap: 5px;
+            }
+            .translate-section {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+            }
+        }
+        .search-bar {
+            margin: 0;
+        }
+        .search-bar input {
+            padding: 5px;
+        }
+        .search-bar button {
+            padding: 5px 10px;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .translate-icon {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+        .language-select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: white;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <a href="Kino of the 'Caust.html" class="dual-logo-link">
+                <img src="images/movie-review-logo.png" alt="Movie Review Logo" class="review-logo" />
+                <img src="images/Web name.png" alt="." class="site-logo" />
+            </a>
+        </div>
+        <ul>
+            <li><a href="About Kino of the 'Caust.html">About the Web</a></li>
+            <li><a href="The Archivist.html">Founder</a></li>
+            <li><a href="Movie categories.html">Movies</a></li>
+            <li class="user-menu" id="userMenu">
+                <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+                <div class="dropdown" id="userDropdown">
+                    <a href="login.html">Log In</a>
+                    <a href="sign up.html">Sign Up</a>
+                </div>
+            </li>
+        </ul>
+        <div class="translate-section">
+            <img src="images/language-icon.png" alt="Language" class="translate-icon">
+            <select class="language-select" id="languageSelect" onchange="translatePage(this.value)">
+                <option value="en">English</option>
+                <option value="vi">Tiếng Việt</option>
+            </select>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="letter-title">Letter from the Host</h1>
+        <div class="letter-content">
+            <h2 class="site-title">WWII War Victims Memorial</h2>
+            <p class="script-font">
+                Dear <span class="highlight-red">Kinokers</span>,
+            </p>
+            <p class="script-font">
+                The impact of <span class="external-link"><span style="color: #2238b2;">[</span><a href="https://en.wikipedia.org/wiki/World_War_II" style="color: #3322b2; text-decoration: none;">WWII</a><span style="color: #2e22b2;">]</span></span> is still felt today. Not only did the war leave the world with the end of <span class="highlight-red">colonialism</span>, the race of <span class="highlight-grey">technological achievements</span>, and the formation of the <a href="https://en.wikipedia.org/wiki/United_Nations" target="_blank" span class="highlight-blue">[United Nations]</a> and multiple <span class="highlight-purple">independent nations</span>, but also <span class="highlight-green">tragedies</span> and <span class="highlight-red">extreme ideologies</span> during this <span class="highlight-grey">dark period</span> of human history, that still wander around the world until today.
+            </p>
+            <p class="script-font">
+                Therefore, we would love to introduce you to <span class="kino-link"><span style="color: #b22222;">[</span><a href="About Kino of the 'Caust.html" style="color: #b22222; text-decoration: none;">Kino of the 'Caust</a><span style="color: #b22222;">]</span></span>, a platform dedicated to preserving the memories of those affected by the war and its consequences, through the lens of <span class="highlight-blue">cinema, documentaries, and arts</span>. Our mission is to honor the <span class="highlight-green">victims</span> and to contribute to the front of truth and equality, fighting against lies and <span class="highlight-red">extreme ideologies</span>.
+            </p>
+            <p class="script-font">
+                Through careful curation of films and arts from different perspectives – those of the <span class="highlight-red">Axis</span> powers and the <span class="highlight-blue">Allied</span> forces – we hope to provide supplies for this global campaign as <span class="highlight-green">"the pens of dead men, women and children"</span>. These films and arts serve as <span class="highlight-red">storytellers</span> whose characters had to face up to <span class="highlight-purple">"human growth"</span>-a disgusting <span class="highlight-grey">excuse</span> for <span class="highlight-red">extreme ideologies</span> and their <span class="highlight-green">atrocities</span>. <span class="highlight-purple">Veterans</span>, <span class="highlight-pink">victims</span>, and <span class="highlight-green">historians</span> all have their stories to tell, all have their role to play; in the script written with <span class="highlight-red">blood</span> and <span class="highlight-blue">tears</span>.
+            </p>
+            <p class="script-font">
+                Once again, we appreciate your visit and hope you will find something <span class="highlight-green">intriguing</span> and <span class="highlight-blue">thought-provoking</span> in our collection. As you navigate through our collection, we encourage you to approach each film with an open mind and heart, ready to learn from history's <span class="highlight-purple">mistakes</span> and <span class="highlight-red">lessons</span>.
+            </p>
+            <p class="script-font">
+                <span class="highlight-green">Remember:</span> The <span class="highlight-grey">dark side</span> of humanity teaches us the <span class="highlight-red">bright side</span> of empathy.
+            </p>
+            <p class="script-font">
+                As time keeps moving forward, we must strive for <span class="highlight-blue">peace</span> and <span class="highlight-green">equality</span>!
+            </p>
+            <p class="script-font signature-line">
+                <span class="highlight-white">Sincerely,</span><br>
+                Lương Minh Dũng (03-12TH2)
+            </p>
+            <span class="curator-signature-container">
+                <a href="The Archivist.html" class="archivist-link" style="color: #b22222;">[The Archivist]</a>
+            </span>
+        </div>
+        <div class="instructions-panel" style="background-color: #ffeb3b; color: black;">
+            <h2><span class="highlight-purple">How to Explore Our Collection:</span></h2>
+            <ul>
+                <li>Use the navigation bar to browse movies by faction or theme.</li>
+                <li>The <span class="internal-link-bracket">[</span><span style="color: #b22222">red</span><span class="internal-link-bracket">]</span> contexts with square brackets act as a link to a section of the website.</li>
+                <li>The <span class="external-link-bracket">[</span><span style="color: #0000CD">blue</span><span class="external-link-bracket">]</span> contexts with square brackets act as a link to an outside website.</li>
+                <li>Use the search bar to find specific films or directors.</li>
+                <li>Click on any movie card to view details, historical contexts, trailers, and reviews.</li>
+                <li>Create an account to save favorites and contribute your own reviews.</li>
+            </ul>
+        </div>
+        <a href="Movie categories.html" class="button">Explore Films</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Kino of the 'Caust. All Rights Reserved.</p>
+    </footer>
+
+    <script src="Letter translator.js"></script>
+</body>
+</html>

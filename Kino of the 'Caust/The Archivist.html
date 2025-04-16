@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About The Archivist - WWII War Victims Memorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('images/archivist.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .notebook-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .notebook-container:hover, 
+        .notebook-container:active {
+            background-color: rgba(255, 252, 242, 0.3);
+        }
+        
+        .notebook-page {
+            min-height: 800px;
+            padding: 40px;
+            line-height: 1.6;
+            color: #111;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .notebook-page::before {
+            content: '[DECLASSIFIED]';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 95px;
+            font-weight: 900;
+            color: rgba(0, 0, 255, 0.15);
+            white-space: nowrap;
+            pointer-events: none;
+            font-family: 'Arial Black', 'Arial', sans-serif;
+            letter-spacing: 10px;
+            filter: blur(1px);
+            z-index: 1;
+        }
+        
+        .notebook-page::after {
+            content: 'TOP SECRET';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgba(255, 0, 0, 0.7);
+            border: 2px solid rgba(255, 0, 0, 0.7);
+            padding: 5px 10px;
+            transform: rotate(5deg);
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        
+        .info-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border: 1px solid #999;
+            max-width: 100%;
+        }
+        
+        .info-details {
+            flex: 1;
+            max-width: 60%;  /* Limit the width of personal info */
+        }
+        
+        .info-line {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+            border-bottom: 1px dotted #666;
+        }
+        
+        .info-label {
+            width: 120px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        
+        .info-text {
+            flex-grow: 1;
+            border-bottom: 1px solid #999;
+            height: 18px;
+            margin: 0 5px;
+        }
+        
+        .custom-image {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #333;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin-left: auto;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .custom-image:hover {
+            opacity: 0.6;
+        }
+        
+        .note {
+            margin-top: 30px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .note p {
+            margin-bottom: 15px;
+        }
+        
+        .tree-diagram {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 1px solid #999;
+        }
+        
+        .tree-diagram img {
+            max-width: 100%;
+            height: auto;
+            mix-blend-mode: multiply;
+        }
+        
+        .quote {
+            margin: 20px 0;
+            padding: 20px;
+            font-style: italic;
+            border-left: 3px solid #666;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .special-thanks {
+            margin-top: 40px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .special-thanks .logos {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+        
+        .special-thanks .logos div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .special-thanks .logos img {
+            width: 60px;  /* Set the initial size */
+            height: 60px;  /* Set the initial size */
+            object-fit: contain;
+            transition: transform 0.3s ease;  /* Smooth transition for scaling */
+        }
+        
+        .special-thanks .logos img:hover {
+            transform: scale(1.5);  /* Scale up on hover */
+        }
+        
+        .special-thanks .logos span {
+            font-size: 0.8em;
+            white-space: nowrap;
+            transition: transform 0.3s ease;
+        }
+        
+        .special-thanks .logos span:hover {
+            transform: scale(1.2);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #333;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            background-color: rgba(255, 255, 0, 0.4);
+            border: 1px solid #999;
+            border-radius: 5px;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+            background-color: rgba(255, 255, 0, 0.6);
+        }
+        
+        .highlight-red {
+            color: #b22222;
+            font-weight: bold;
+            font-size: 0.9em;  /* Adjusted size for the text */
+        }
+        
+        .highlight-red::before,
+        .highlight-red::after {
+            content: '[';  /* Add opening bracket */
+            font-size: 0.8em;  /* Smaller size for the bracket */
+            color: #b22222;  /* Match the color of the text */
+        }
+        
+        .highlight-red::after {
+            content: ']';  /* Add closing bracket */
+        }
+        
+        .paper-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/png;base64,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');
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .redacted {
+            background-color: #000;
+            color: #fff;
+            padding: 0 4px;
+            user-select: none;
+        }
+
+        .redacted::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background-color: #fff;
+            opacity: 0.7;
+        }
+        
+        .keyboard-shortcut {
+            background-color: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin: 0 3px;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .translate-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .translate-icon {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+        
+        .language-select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: white;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="translate-section">
+        <img src="images/language-icon.png" alt="Language" class="translate-icon">
+        <select class="language-select" id="languageSelect" onchange="translatePage(this.value)">
+            <option value="en">English</option>
+            <option value="vi">Tiếng Việt</option>
+        </select>
+    </div>
+    <div class="notebook-container">
+        <div class="notebook-page">
+            <div class="paper-texture"></div>
+            <h1>FOUNDER:<span class="highlight-red">The Archivist</span></h1>
+            
+            <div class="info-section">
+                <div class="info-details">
+                    <div class="info-line">
+                        <div class="info-label">Name:</div>
+                        <div class="info-text">Lương Minh Dũng</div>
+                    </div>
+
+                    <div class="info-line">
+                        <div class="info-label">Age:</div>
+                        <div class="info-text"><span class="redacted">[REDACTED]</span></div>
+                    </div>
+                    
+                    <div class="info-line">
+                        <div class="info-label">Date of birth:</div>
+                        <div class="info-text">14/09/<span class="redacted">[REDACTED]</span></div>
+                    </div>
+                    
+                    
+                    <div class="info-line">
+                        <div class="info-label">School:</div>
+                        <div class="info-text">Nguyễn Thượng Hiền</div>
+                    </div>
+                    
+                    <div class="info-line">
+                        <div class="info-label">Class:</div>
+                        <div class="info-text">12TH2</div>
+                    </div>
+
+                    <div class="info-line">
+                        <div class="info-label">Student code:</div>
+                        <div class="info-text">03</div>
+                    </div>
+                    
+                    <div class="info-line">
+                        <div class="info-label">Email:</div>
+                        <div class="info-text">minhdungluong<span class="redacted">[REDACTED]</span>@gmail.com</div>
+                    </div>
+                </div>
+                <a href="images/the archivist.png" target="_blank">
+                    <img src="images/the archivist.png" alt="The Archivist" class="custom-image">
+                </a>
+            </div>
+            
+            <div class="note">
+                <p>- A young boy with great interest in history of humankind, he has been craving on whatever discusses about events and evolutions since he was a child.</p>
+                
+                <p>- Came across WWII history at the age of <span class="redacted">[REDACTED]</span>, falling in love with it since.</p>
+
+                <p>- Desired to raise awareness of WWII history-one of the most important events that shaped the world as we know it today-among the younger generations.</p>
+
+                <p>- Wanted some free time, but <span class="redacted">[REDACTED]</span> forced him to code this website.</p>
+                
+                
+                <div class="tree-diagram">
+                    <img src="images/tree diagram.png" alt="Motif Tree Diagram">
+                </div>
+            
+            <div class="quote">
+                </p>"The sultry sky of fury, war-mongering ambitions does not just burn down the remnants of human ascomplishments, but also evaporates the rivers and lakes of justice and equality; only to be suppressed by the rains of justice and equality themselves."
+            </div>
+            <div class="quote">
+                </p>"We shall no longer compete with AI, but with ourselves. As AI builds up the material civilization for us, we shall build up our own evolution - the evolution of ideas and spiritual enlightement."
+            </div>
+            
+            <div class="special-thanks">
+                Special thanks to:<br>
+                <div class="logos">
+                    <img src="images/chatgpt.png" alt="ChatGPT">
+                    <img src="images/copilot.png" alt="Copilot">
+                    <img src="images/cursor.png" alt="Cursor">
+                    <img src="images/blankslate.png" alt="BlankSlate">
+                    <img src="images/lucidchart.png" alt="Lucidchart">
+                    <img src="images/deepseek.png" alt="DeepSeek">
+                </div>
+                <div style="margin-top: 10px;">
+                    <span class="keyboard-shortcut">Ctrl + A</span>
+                    <span class="keyboard-shortcut">Ctrl + C</span>
+                    <span class="keyboard-shortcut">Ctrl + V</span>
+                </div>
+            </div>
+            
+            <a href="Letter from the host.html" class="back-link">← Return to Letter</a>
+        </div>
+    </div>
+
+    <div class="lightbox" id="imageLightbox" onclick="this.style.display='none'">
+        <img src="" alt="Enlarged image" id="lightboxImage">
+    </div>
+    <script src="Translation.js"></script>
+</body>
+</html>
