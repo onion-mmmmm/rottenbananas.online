@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>22-Le Huynh Quoc Thang</title>
+  <!-- FontAwesome for icons -->
+  <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="picture\logo.jpg" alt="Logo" />
+        Aircraft Showcase
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Find plane?" />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="#action">Boeing 777</a></li>
+      <li><a href="#comedy">Boeing 787</a></li>
+      <li><a href="#drama">Boeing 747</a></li>
+      <li><a href="#scifi">Airbus A330</a></li>
+      <li><a href="#horror">Airbus A350</a></li>
+      <li><a href="#fantasy">Airbus A380</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- header -->
+  <header>
+    <div class="hero-content animate-on-scroll">
+      <h1>Aircraft</h1>
+      <p>Boeing and Airbus aircraft showcase</p>
+      <button class="cta-btn" onclick="document.querySelector('#action').scrollIntoView()">Explore Now</button>
+    </div>
+  </header>
+
+  <!-- Neuromorphic Category Buttons -->
+  <div class="categories-container">
+    <div class="btn"><a href="#action">Boeing 777</a></div>
+    <div class="btn"><a href="#comedy">Boeing 787</a></div>
+    <div class="btn"><a href="#drama">Boeing 747</a></div>
+    <div class="btn"><a href="#scifi">Airbus A330</a></div>
+    <div class="btn"><a href="#horror">Airbus A350</a></div>
+    <div class="btn"><a href="#fantasy">Airbus A380</a></div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget" class="chat-widget closed">
+    <div class="chat-icon">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        Rottenbananas Customer Service
+        <span class="chat-close"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="chat-body">
+        <!-- Các tin nhắn chat sẽ hiển thị tại đây -->
+        <p>Hi, how can I help you today?</p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Nhập tin nhắn..." id="chat-input" />
+        <button class="send-btn" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Movie Categories -->
+  <main>
+    <!-- Action Movies Section -->
+    <section id="action">
+      <h2 class="animate-on-scroll">Boeing 777</h2>
+      <div class="movie-grid">
+          <div class="card animate-on-scroll">
+            <img src="picture\777\777.jpeg" alt="Action Movie 1">
+            <div class="card-content">
+              <h3>Boeing 777 taxiing</h3>
+              <p>Boeing default livery</p>
+              <span class="rating">8.2/10</span>
+            </div>
+          </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\777\777-1.jpg" alt="Action Movie 2">
+          <div class="card-content">
+            <h3>Vietnam Airlines Boeing 777</h3>
+            <p>Fly with emotions</p>
+            <span class="rating">7.9/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\777\777-2.jpg" alt="Action Movie 3">
+          <div class="card-content">
+            <h3>Qatar Airways</h3>
+            <p>Boeing 777 with FIFA World Cup livery</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comedy Movies Section -->
+    <section id="comedy">
+      <h2 class="animate-on-scroll">Boeing 787</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture\787\787.jpeg" alt="Comedy Movie 1">
+          <div class="card-content">
+            <h3>Boeing 787-9</h3>
+            <p><p>
+            <span class="rating">8.0/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/787/787-1.jpeg" alt="Comedy Movie 2">
+          <div class="card-content">
+            <h3>787 Family</h3>
+            <p>Come with 9th and 10th generation</p>
+            <span class="rating">7.5/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\787\787-2.jpg" alt="Comedy Movie 3">
+          <div class="card-content">
+            <h3>Vietnam Airlines 787-10</h3>
+            <p>One of the 30th Vietnam Airlines 787-10</p>
+            <span class="rating">8.3/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drama Movies Section -->
+    <section id="drama">
+      <h2 class="animate-on-scroll">Boeing 747</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture\747\747.jpg" alt="Drama Movie 1">
+          <div class="card-content">
+            <h3>PAN AM 747</h3>
+            <p>PAN AM: the legend and pioneer of commercial aviation!</p>
+            <span class="rating">8.4/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\747\747-1.avif" alt="Drama Movie 2">
+          <div class="card-content">
+            <h3>Air Force One</h3>
+            <p>Luxurious, comfortable and convenient suite for the President of the United States for long trips</p>
+            <span class="rating">7.8/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\747\747-2.jpg" alt="Drama Movie 3">
+          <div class="card-content">
+            <h3>British Airways is pushed back</h3>
+            <p></p>
+            <span class="rating">8.1/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sci-Fi Movies Section -->
+    <section id="scifi">
+      <h2 class="animate-on-scroll">Airbus A330</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture\a330\a330.webp" alt="Sci-Fi Movie 1">
+          <div class="card-content">
+            <h3>Efficiency Aircraft family</h3>
+            <p>Gently glide in the sky without worrying about fuel comsumption.</p>
+            <span class="rating">8.7/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\a330\a330-1.webp" alt="Sci-Fi Movie 2">
+          <div class="card-content">
+            <h3>Perfect Take off</h3>
+            <p>Tremendously beautiful view along the runway</p>
+            <span class="rating">7.8/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\a330\a330-2.webp" alt="Sci-Fi Movie 3">
+          <div class="card-content">
+            <h3>Popular Everywhere in the World</h3>
+            <p>Reliable and sustainable aircraft.</p>
+            <span class="rating">8.1/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horror Movies Section -->
+    <section id="horror">
+      <h2 class="animate-on-scroll">Airbus A350</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture\a350\a350.jpg" alt="Horror Movie 1">
+          <div class="card-content">
+            <h3>Nothing but the best</h3>
+            <p>Great aircraft for long journey.</p>
+            <span class="rating">8.0/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\a350\a350-1.jpg" alt="Horror Movie 2">
+          <div class="card-content">
+            <h3> Member of Vietnam Airlines' fleet</h3>
+            <p>Equipped with modern engine, technology and outstanding inflight entertainment.</p>
+            <span class="rating">7.7/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\a350\a350-2.jpg" alt="Horror Movie 3">
+          <div class="card-content">
+            <h3>Sexy body with a sound turbine</h3>
+            <p>A beautiful landing in China.</p>
+            <span class="rating">8.2/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fantasy Movies Section -->
+    <section id="fantasy">
+      <h2 class="animate-on-scroll">Airbus A380</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture\a380\a380.jpg" alt="Fantasy Movie 1">
+          <div class="card-content">
+            <h3>We all love 'em</h3>
+            <p>Financial solver of companies and convenient solver for passenger.</p>
+            <span class="rating">8.3/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\a380\a380-1.jpg" alt="Fantasy Movie 2">
+          <div class="card-content">
+            <h3>Cute livery from ANA</h3>
+            <p>A World-class experience with World-class crew.</p>
+            <span class="rating">8.0/10</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture\a380\a380-2.jpg" alt="Fantasy Movie 3">
+          <div class="card-content">
+            <h3>We are aiming to neutralize carbon emission in the near future</h3>
+            <p>4 engines but comsume less fuel than an ATR 72.</p>
+            <span class="rating">8.5/10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Aircraft Showcase</p>
+    <p>&copy; Le Huynh Quoc Thang - 22 - 12TH2</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+  
+    onAuthStateChanged(auth, async (user) => {
+      const userBtn = document.getElementById("userBtn");
+      const userDropdown = document.getElementById("userDropdown");
+      if (user) {
+        // Lấy username từ Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        let username = "User";
+        if (docSnap.exists()) {
+          username = docSnap.data().username;
+        }
+        userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
+        // Hiển thị nút Log Out trong dropdown
+        userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      } else {
+        userBtn.innerHTML = 'Log In / Sign Up <i class="fas fa-caret-down"></i>';
+        userDropdown.innerHTML = '<a href="login.html">Log In</a><a href="signup.html">Sign Up</a>';
+      }
+    });
+  </script>
+
+  <!-- Link to external JS file -->
+  <script src="script.js"></script>
+</body>
+</html>

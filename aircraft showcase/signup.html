@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firebase Auth with Email Verification</title>
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+  <link rel="stylesheet" href="stylesforsignup.css" />
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script defer
+  src="https://unpkg.com/verifalia-widget@1.13.0/dist/verifalia-widget.js"
+  data-verifalia-appkey="c99f98df461b42d7a11c33bf500f0fb3"
+  integrity="sha512-lSDPMmyZ2UdFJe668Pqz6kpbWtycj+edgzRTBdbAhXCTtWY+Shz0Qhgpo4R5wzQwjTUqm5h/4DV0ALATSob5ow=="
+  crossorigin="anonymous"></script>
+  <style>
+    .password-wrapper {
+      position: relative;
+    }
+    .password-wrapper input {
+      width: 100%;
+      padding-right: 2.5em; /* space for the icon */
+    }
+    .password-wrapper .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="picture\logo.jpg" alt="Logo" />
+        Aircraft Showcase
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Find plane?" />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="index.html#action">Boeing 777</a></li>
+      <li><a href="index.html#comedy">Boeing 787</a></li>
+      <li><a href="index.html#drama">Boeing 747</a></li>
+      <li><a href="index.html#scifi">Airbus A330</a></li>
+      <li><a href="index.html#horror">Airbus A350</a></li>
+      <li><a href="index.html#fantasy">Airbus A380</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <!-- Sign Up Form -->
+    <div class="form-container">
+      <h2>Sign Up</h2>
+      <form id="signUpForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="signupEmail" required />
+
+        <label for="password">Password:</label>
+        <div class="password-wrapper">
+          <input type="password" id="signupPassword" required />
+          <i class="fa-solid fa-eye toggle-password"></i>
+        </div>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <div class="password-wrapper">
+          <input type="password" id="confirmPassword" required />
+          <i class="fa-solid fa-eye toggle-password"></i>
+        </div>
+
+        <div class="g-recaptcha" data-sitekey="6Lf6htsqAAAAAGF8eKUCP336Fjypli1pGVu36s6Q"></div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Log In</a></p>
+      <hr />
+      <!-- Sign Up with Google button -->
+      <button id="googleSignUp" class="google">Sign Up with Google</button>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      sendEmailVerification,
+      signInWithPopup,
+      GoogleAuthProvider
+    } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import {
+      getFirestore,
+      setDoc,
+      doc
+    } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+    // Firebase configuration – replace with your project's settings
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Handle email/password sign-up
+    document.getElementById("signUpForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          const user = userCredential.user;
+          // Save username, email, and creation time to Firestore
+          await setDoc(doc(db, "users", user.uid), {
+            username: username,
+            email: email,
+            createdAt: new Date()
+          });
+
+          // Send verification email
+          sendEmailVerification(user)
+            .then(() => {
+              window.location.href = "emailVerification.html";
+            })
+            .catch((error) => {
+              alert("Error sending verification email: " + error.message);
+              console.error("Error sending email verification:", error);
+            });
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+          console.error("Error signing up:", error);
+        });
+    });
+
+    // Handle sign-up with Google
+    document.getElementById("googleSignUp").addEventListener("click", async () => {
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        // Use displayName as username if available
+        await setDoc(doc(db, "users", user.uid), {
+          username: user.displayName || "No Name",
+          email: user.email,
+          createdAt: new Date()
+        }, { merge: true });
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("Error with Google Sign Up: " + error.message);
+        console.error("Google sign up error:", error);
+      }
+    });
+
+    // Toggle password visibility for both password fields
+    const togglePasswordIcons = document.querySelectorAll('.password-wrapper .toggle-password');
+    togglePasswordIcons.forEach(icon => {
+      icon.addEventListener('click', function() {
+        // Assuming the input is the previous sibling of the icon
+        const passwordInput = this.previousElementSibling;
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          this.classList.remove("fa-eye");
+          this.classList.add("fa-eye-slash");
+        } else {
+          passwordInput.type = "password";
+          this.classList.remove("fa-eye-slash");
+          this.classList.add("fa-eye");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
