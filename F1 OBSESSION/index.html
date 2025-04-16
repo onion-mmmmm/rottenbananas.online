@@ -1,1 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 OBSESSION</title>
+  <!-- FontAwesome for icons -->
+  <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="movie review logo.png" alt="Logo" />
+        NGOC_12TH2_15_NTH
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="nav-search-input" placeholder="Search..." />
+      <button id="nav-search-btn">Search</button>
+    </div>
+    <ul>
+      <li><a href="#Ferrari">Ferrari</a></li>
+      <li><a href="#McLaren">McLaren</a></li>
+      <li><a href="#Mercedes">Mercedes</a></li>
+      <li><a href="#Red Bull Racing">Red Bull Racing</a></li>
+      <li><a href="#Haas">Haas</a></li>
+      <li><a href="#Williams">Williams</a></li>
+      <li class="user-menu" id="userMenu">
+        <span class="user-btn" id="userBtn">Log In / Sign Up <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown" id="userDropdown">
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </li>
+      <li class="language-selector">
+        <i class="fas fa-globe"></i>
+      </li>
+    </ul>
+  </nav>
 
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-content animate-on-scroll">
+      <h1>F1 OBSESSION</h1>
+      <p>Fueled by speed, driven by passion—welcome to F1 Obsession, where the race never stops!</p>
+      <button class="cta-btn" onclick="document.querySelector('#action').scrollIntoView()">Explore Now</button>
+    </div>
+  </header>
+
+  <!-- Neuromorphic Category Buttons -->
+  <div class="categories-container">
+    <div class="btn"><a href="#Ferrari">Ferrari</a></div>
+    <div class="btn"><a href="#McLaren">McLaren</a></div>
+    <div class="btn"><a href="#Mercedes">Mercedes</a></div>
+    <div class="btn"><a href="#Red Bull Racing">Red Bull Racing</a></div>
+    <div class="btn"><a href="#Haas">Haas</a></div>
+    <div class="btn"><a href="#Williams">Williams</a></div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget" class="chat-widget closed">
+    <div class="chat-icon">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        F1 OBSESSION Customer Service
+        <span class="chat-close"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="chat-body">
+        <!-- Các tin nhắn chat sẽ hiển thị tại đây -->
+        <p>Hi, how can I help you today?</p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Nhập tin nhắn..." id="chat-input" />
+        <button class="send-btn" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- F1 Categories -->
+  <main>
+    <!-- Ferrari Section -->
+    <section id="Ferrari">
+      <h2 class="animate-on-scroll">Ferrari</h2>
+      <div class="movie-grid">
+          <div class="card animate-on-scroll">
+            <img src="picture/Charles Leclerc.png" alt="Ferrari 1">
+            <div class="card-content">
+              <h3>Charles Leclerc</h3>
+              <p>A Monégasque professional racing driver, currently driving for Scuderia Ferrari in Formula One.</p>
+              <span class="rating">16 October 1997</span>
+            </div>
+          </div>
+        </a>
+        <div class="card animate-on-scroll">
+          <img src="picture/Lewis Hamilton.png" alt="Ferrari 2">
+          <div class="card-content">
+            <h3>Lewis Hamilton</h3>
+            <p>A British Formula One racing driver, currently racing for the Scuderia Ferrari.</p>
+            <span class="rating">7 January 1985</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Ferrari SF-25.png" alt="Ferrari 3">
+          <div class="card-content">
+            <h3>Ferrari SF-25</h3>
+            <p>A Formula One racing car designed and constructed by Scuderia Ferrari which is competing in the 2025 Formula One World Championship</p>
+            <span class="rating">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- McLaren Section -->
+    <section id="McLaren">
+      <h2 class="animate-on-scroll">McLaren</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture/Lando Norris.png" alt="Comedy Movie 1">
+          <div class="card-content">
+            <h3>Lando Norris</h3>
+            <p>A British racing driver, who competes in Formula One for McLaren. </p>
+            <span class="rating">13 November 1999</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Oscar Piastri.png" alt="Comedy Movie 2">
+          <div class="card-content">
+            <h3>Oscar Piastri</h3>
+            <p>An Australian racing driver, who competes in Formula One for McLaren.</p>
+            <span class="rating">6 April 2001</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/McLaren MCL39.png" alt="Comedy Movie 3">
+          <div class="card-content">
+            <h3>McLaren MCL39</h3>
+            <p>A Formula One car constructed by McLaren and designed under the direction of Rob Marshall to compete in the 2025 Formula One World Championship.</p>
+            <span class="rating">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mercedes Section -->
+    <section id="Mercedes">
+      <h2 class="animate-on-scroll">Mercedes</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture/George Russell.png" alt="Drama Movie 1">
+          <div class="card-content">
+            <h3>George Russell</h3>
+            <p>A British racing driver, who competes in Formula One for Mercedes.</p>
+            <span class="rating">15 February 1998</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Kimi Antonelli.png" alt="Drama Movie 2">
+          <div class="card-content">
+            <h3>Kimi Antonelli</h3>
+            <p>An Italian racing driver, who competes in Formula One for Mercedes.</p>
+            <span class="rating">25 August 2006</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Mercedes W16.png" alt="Drama Movie 3">
+          <div class="card-content">
+            <h3>Mercedes W16</h3>
+            <p>A Formula One racing car designed and built by the Mercedes-AMG Petronas F1 Team currently competing in the 2025 Formula One World Championship.</p>
+            <span class="rating">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Red Bull Racing Section -->
+    <section id="Red Bull Racing">
+      <h2 class="animate-on-scroll">Red Bull Racing</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture/Max Verstappen.png" alt="Sci-Fi Movie 1">
+          <div class="card-content">
+            <h3>Max Verstappen</h3>
+            <p>A Dutch and Belgian racing driver, who competes under the Dutch flag in Formula One for Red Bull Racing.</p>
+            <span class="rating">30 September 1997</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Liam Lawson.png" alt="Sci-Fi Movie 2">
+          <div class="card-content">
+            <h3>Liam Lawson</h3>
+            <p>A New Zealand racing driver, who is contracted to compete in Formula One for Racing Bulls.</p>
+            <span class="rating">11 February 2002</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Oracle Red Bull Racing RB21.png" alt="Sci-Fi Movie 3">
+          <div class="card-content">
+            <h3>Oracle Red Bull Racing RB21</h3>
+            <p>A Formula One car designed and constructed by Red Bull Racing currently competing in the 2025 Formula One World Championship.</p>
+            <span class="rating">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Haas Section -->
+    <section id="Haas">
+      <h2 class="animate-on-scroll">Haas</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture/Esteban Ocon.png" alt="Horror Movie 1">
+          <div class="card-content">
+            <h3>Esteban Ocon</h3>
+            <p>A French racing driver, who competes in Formula One for Haas.</p>
+            <span class="rating">17 September 1996</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Oliver Bearman.png" alt="Horror Movie 2">
+          <div class="card-content">
+            <h3>Oliver Bearman</h3>
+            <p>A British racing driver, who competes in Formula One for Haas.</p>
+            <span class="rating">8 May 2005</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Haas VF-25.png" alt="Horror Movie 3">
+          <div class="card-content">
+            <h3>Haas VF-25</h3>
+            <p>A Formula One racing car designed and constructed by the Haas F1 Team currently competing in the 2025 Formula One World Championship.</p>
+            <span class="rating">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Williams Section -->
+    <section id="Williams">
+      <h2 class="animate-on-scroll">Williams</h2>
+      <div class="movie-grid">
+        <div class="card animate-on-scroll">
+          <img src="picture/Alexander Albon.png" alt="Fantasy Movie 1">
+          <div class="card-content">
+            <h3>Alexander Albon</h3>
+            <p>A Thai and British racing driver, who competes under the Thai flag in Formula One for Williams.</p>
+            <span class="rating">23 March 1996</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Carlos Sainz.png" alt="Fantasy Movie 2">
+          <div class="card-content">
+            <h3>Carlos Sainz</h3>
+            <p>A Spanish racing driver, who competes in Formula One for Williams.</p>
+            <span class="rating">1 September 1994</span>
+          </div>
+        </div>
+        <div class="card animate-on-scroll">
+          <img src="picture/Williams FW47.png" alt="Fantasy Movie 3">
+          <div class="card-content">
+            <h3>Williams FW47</h3>
+            <p>A Formula One racing car designed and constructed by Williams competing in the 2025 Formula One World Championship.</p>
+            <span class="rating">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 F1 OBSESSION. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyADB_JR1kJUslyg1VwhQn7SC05lsO0Lzco",
+      authDomain: "rottenbananas-signup.firebaseapp.com",
+      projectId: "rottenbananas-signup",
+      storageBucket: "rottenbananas-signup.firebasestorage.app",
+      messagingSenderId: "841550936785",
+      appId: "1:841550936785:web:694ffd5588f8776e6be3f0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+  
+    onAuthStateChanged(auth, async (user) => {
+      const userBtn = document.getElementById("userBtn");
+      const userDropdown = document.getElementById("userDropdown");
+      if (user) {
+        // Lấy username từ Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        let username = "User";
+        if (docSnap.exists()) {
+          username = docSnap.data().username;
+        }
+        userBtn.innerHTML = username + ' ' + '<i class="fas fa-caret-down"></i>';
+        // Hiển thị nút Log Out trong dropdown
+        userDropdown.innerHTML = '<button id="logoutBtn">Log Out</button>';
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      } else {
+        userBtn.innerHTML = 'Log In / Sign Up <i class="fas fa-caret-down"></i>';
+        userDropdown.innerHTML = '<a href="login.html">Log In</a><a href="signup.html">Sign Up</a>';
+      }
+    });
+  </script>
+
+  <!-- Link to external JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
